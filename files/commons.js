@@ -3,21 +3,21 @@
  * Only used in debugging.
  */
 function getIframeUrl(callback) {
-    const req = new XMLHttpRequest()
-    req.onreadystatechange = (e) => {
-      if (req.readyState === XMLHttpRequest.DONE) {
-        if (req.status === 200) {
-          if (req.responseText) {
-            sessionStorage.setItem('iframeUrl', req.responseText)
-          } else {
-            sessionStorage.removeItem('iframeUrl')
-          }
-          callback()
+  const req = new XMLHttpRequest()
+  req.onreadystatechange = (e) => {
+    if (req.readyState === XMLHttpRequest.DONE) {
+      if (req.status === 200) {
+        if (req.responseText) {
+          sessionStorage.setItem('iframeUrl', req.responseText)
         } else {
-          console.error(`Error ${req.status} ${req.statusText}`, req.responseText)
+          sessionStorage.removeItem('iframeUrl')
         }
+        callback()
+      } else {
+        console.error(`Error ${req.status} ${req.statusText}`, req.responseText)
       }
     }
-    req.open('GET', 'iframeUrl')
-    req.send()
   }
+  req.open('GET', 'iframeUrl')
+  req.send()
+}

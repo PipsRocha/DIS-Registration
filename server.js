@@ -4,33 +4,54 @@ const path = require('path')
 require('dotenv').config()
 
 const app = express()
-const PORT = process.env.PORT;
+const port = 3000
 
-const API_KEY = process.env.API_KEY;
-
-const TEST_ACCOUNT_ID = process.env.ACCOUNT_ID;
-const TEST_API_KEY = process.env.API_KEY;
-const API_URL = process.env.API_URL;
-
-
-app.use(express.json());
+// TODO: remove after inclusion from CDN
+// Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'public', 'images')))
+
 app.use('/files', express.static(path.join(__dirname, 'files')))
-app.use('/images', express.static(path.join(__dirname, 'images')))
 
-
-app.post('/checkoutmanifest', createCheckoutSession)
+app.get('/checkoutmanifest/:type', createCheckoutSession)
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
+})
+
+app.get('/sdk', (req, res) => {
+  const sdkVersion = '2.6.1'
+  if (!process.env.SDK_URL) {
+    // Include from production CDN
+    res.redirect(`https://cdn.easypay.pt/checkout/${sdkVersion}/`)
+    return
+  }
+  if (process.env.SDK_URL.startsWith('http')) {
+    // Include from a different URL (other testing environments)
+    try {
+      const _url = new URL(process.env.SDK_URL)
+    } catch (e) {
+      res.status(500).send('SDK_URL is not a valid URL.')
+      return
+    }
+    res.redirect(new URL(`${sdkVersion}/`, process.env.SDK_URL))
+  } else {
+    // Return file from disk (to debug local version)
+    res.sendFile(process.env.SDK_URL)
+  }
 })
 
 app.get('/iframeUrl', (req, res) => {
   res.send(process.env.IFRAME_URL || '')
 })
 
-app.listen(PORT, () => {
-  console.log(`Checkout page running on http://localhost:${PORT}`)
+app.get('/popup', (req, res) => {
+  res.sendFile(path.join(__dirname, 'popup.html'))
+})
+
+
+app.listen(port, () => {
+  console.log(`Checkout page running on http://localhost:${port}`)
 })
 
 /**
@@ -40,98 +61,96 @@ app.listen(PORT, () => {
  * to initialize the Checkout SDK in the client side.
  */
 function createCheckoutSession(req, res) {
-    const accountId = TEST_ACCOUNT_ID;
-    const apiKey = TEST_API_KEY;
-    const host = API_URL;
+  const accountId = process.env.TEST_ACCOUNT_ID
+  const apiKey = process.env.TEST_API_KEY
+  const tomorrow = new Date()
+  tomorrow.setDate(tomorrow.getDate() + 1)
+  const host = process.env.API_URL
 
-    const { personalInfo, cartTotal, paymentType } = req.body;
-    console.log("Request Body:", req.body);  // Log the request body
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
+  let payment = {
+    methods: ['cc', 'mb', 'mbw', 'dd', 'vi', 'uf', 'sc', 'ap', 'gp'],
+    type: req.query.operation || 'sale',
+    capture: {
+      transaction_key: 'string',
+      descriptive: 'Descriptive Example',
+    },
+    currency: 'EUR',
+    expiration_time: tomorrow.toISOString().slice(0, 16).replace('T', ' '),
+  }
 
-    let payment = {
-        methods: [paymentType],
-        type: 'sale',
-        capture: {
-        transaction_key: 'string',
-        descriptive: 'Descriptive Example',
-        },
-        currency: 'EUR',
-        expiration_time: tomorrow.toISOString().slice(0, 16).replace('T', ' '),
-    };
+  if (req.params.type === 'frequent') {
+    payment.methods = ['cc', 'mb', 'mbw', 'dd', 'vi']
+  }
 
-    let order = {
-        value: cartTotal,
-        key: 'order-key',
-        items: [
+  if (req.params.type === 'subscription') {
+    const today = new Date()
+    today.setHours(today.getHours() + 1)
+    payment.start_time = today.toISOString().slice(0, 16).replace('T', ' ')
+    payment.frequency = '1W'
+    payment.methods = ['cc', 'dd']
+  }
+
+  let order = {}
+  if (req.params.type === 'single' || req.params.type === 'subscription') {
+    order = {
+      value: 1,
+      key: 'order-key',
+      items: [
         {
-            description: 'Conference Registration',
-            quantity: 1,
-            key: 'registration',
-            value: cartTotal,
+          description: 'Item in cart',
+          quantity: 1,
+          key: 'product-1',
+          value: 0.5,
         },
-        ],
-    };
-
-    const payload = JSON.stringify({
-        type: ['sale'],
-        payment: payment,
-        order: order,
-        config: {},
-        customer: {
-            name: personalInfo.name,
-            email: personalInfo.email,
-            phone: '',
-            phone_indicative: '',
-            fiscal_number: '',
-            key: 'Key Example',
-            language: 'EN',
+        {
+          description: 'Item 2 in cart',
+          quantity: 1,
+          key: 'product-2',
+          value: 0.5,
         },
-    });
-    console.log("Payload:", payload);  // Log the payload
-
-    const options = {
-        hostname: host,
-        path: '/2.0/checkout',
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json',
-        'Content-Length': payload.length,
-        AccountId: accountId,
-        ApiKey: apiKey,
-        },
+      ],
     }
+  }
 
-    function makeRequest(attempts) {
-        const req = https.request(options, function (response) {
-        let manifest = '';
-        response.on('data', function (chunk) {
-            manifest += chunk;
-        });
-        response.on('end', function () {
-            console.log('API Response:', response.statusCode, manifest); // Log status code and manifest
-            if (response.statusCode !== 200) {
-                console.error(`Easypay API error: ${response.statusCode} - ${manifest}`);
-                res.status(500).send(`Easypay API error: ${response.statusCode} - ${manifest}`);
-                return;
-            }
-            res.send(manifest);
-        });   
-    });
+  const payload = JSON.stringify({
+    type: [req.params.type],
+    payment: payment,
+    order: order,
+    config: {},
+    customer: {
+      name: 'Customer Example',
+      email: 'customer@example.com',
+      phone: '911234567',
+      phone_indicative: '+351',
+      fiscal_number: 'PT123456789',
+      key: 'Key Example',
+      language: 'PT',
+    },
+  })
 
-        req.on('error', function (e) {
-        console.error(`Error: ${e.message}`);
-        if (attempts > 1) {
-            console.log(`Retrying... (${attempts - 1} attempts left)`);
-            makeRequest(attempts - 1);
-        } else {
-            res.status(500).send('Unable to create checkout session. Please try again later.');
-        }
-        });
+  const options = {
+    hostname: host,
+    path: '/2.0/checkout',
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Content-Length': payload.length,
+      AccountId: accountId,
+      ApiKey: apiKey,
+    },
+  }
 
-        req.write(payload);
-        req.end();
-    }
+  var httpreq = https.request(options, function (response) {
+    let manifest = ''
+    response.on('data', function (chunk) {
+      manifest += chunk
+    })
+    response.on('end', function () {
+      console.log('received: ', manifest)
+      res.send(manifest)
+    })
+  })
 
-    makeRequest(3); // Retry up to 3 times
+  httpreq.write(payload)
+  httpreq.end()
 }
