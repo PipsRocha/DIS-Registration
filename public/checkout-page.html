@@ -37,124 +37,69 @@
         <img src="images/header_homepage.jpg" class="img-fluid" alt="Responsive image">
         </div>
 
-      <!-- Checkout Container -->
-      <div id="easypay-checkout">
-        <a href="popup.html">link </a>
-      </div>
+        <!-- Checkout Container -->
+    <div id="easypay-checkout"></div>
 
-    <!-- Fetch Data and Initialize Checkout -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        const checkoutData = JSON.parse(localStorage.getItem('checkoutData'));
-        console.log(checkoutData);
-        
-        if (!checkoutData) {
-          alert('No checkout data found. Redirecting back to registration page.');
-          window.location.href = 'index.html';
-          return;
-        }})
 
-        
-      /** Used to store the checkout instance and later unmount it. */
-      let checkoutInstance
-      let manifest
-      let successfulPaymentInteraction = false
-
-      /** The code we want to run when Checkout finishes successfully. */
-      function onCheckoutSuccess(successInfo) {
-        successfulPaymentInteraction = true
-        alert('Thank you for Registering')
-        window.location.href = 'aftercheckout.html';
-      }
-
-      /** The code we want to run on Checkout errors. */
-      function onCheckoutError(error) {
-        checkoutInstance.unmount()
-        switch (error.code) {
-          case 'checkout-expired':
-            getCheckoutManifest()
-            break
-          case 'already-paid':
-            document.write('Your order was already paid. Thank you.')
-            break
-          case 'checkout-canceled':
-            document.write('Your order was canceled.')
-            break
-          default:
-            document.write('Unable to process payment, please try again.')
-        }
-      }
-
-      /** The code we want to run on Checkout Close. */
-      function onCheckoutClose() {
-        if (successfulPaymentInteraction) {
-          checkoutInstance.unmount()
-          document.write('Your order was received. Thank you.')
-        }
-        alert('Popup closed.')
-      }
-
-      /**
-       * Call the Checkout SDK with manifest and options.
-       * In this case, we are using the default id 'easypay-checkout', we are passing a 'display' option to enable 'popup' mode and our event handlers.
-       */
-      function initEasypayCheckoutSDK(manifest) {
-        let config = {
-          onSuccess: onCheckoutSuccess,
-          onError: onCheckoutError,
-          onClose: onCheckoutClose,
-          language: 'en',
-          logoUrl:
-            sessionStorage.getItem('logoUrl') === 'true'
-              ? 'https://easypay-cdn-delivery.s3.eu-central-1.amazonaws.com/emails/easypay_logo.svg'
-              : '',
-          testing: true,
-          display: 'popup',
-        }
-
-        for (const key of Object.keys(sessionStorage)) {
-          const item = sessionStorage.getItem(key)
-          if (item === 'true' || item === 'false') {
-            if (key !== 'logoUrl') {
-              config[key] = item === 'true'
+        <!-- Fetch Data -->
+         <script>
+          document.addEventListener('DOMContentLoaded', () => {
+            // Fetch checkout data from localStorage
+            const checkoutData = JSON.parse(localStorage.getItem('checkoutData'));
+            console.log(checkoutData)
+            
+            if (!checkoutData) {
+                alert('No checkout data found. Redirecting back to registration page.');
+                window.location.href = 'acm-member.html';
+                return;
             }
-          } else if (['inputBorderRadius', 'buttonBorderRadius', 'baseFontSize'].includes(key)) {
-            config[key] = parseInt(item)
-          } else {
-            config[key] = item
-          }
+
+            // Display user information and total amount
+
+            document.getElementById('easypay-checkout').innerHTML = `
+                <h4>User Details</h4>
+               <p><strong>Name:</strong> ${checkoutData.personalInfo.name}</p>
+                <p><strong>Email:</strong> ${checkoutData.personalInfo.email}</p>
+                <p><strong>Registration Type:</strong> ${checkoutData.personalInfo.registrationType}</p>
+                <p><strong>Total Amount:</strong> €${checkoutData.cartTotal.toFixed(2)}</p>
+                <select id= "paymentType" name="paymentType" required>
+                <option value="cc">Credit Card</option>
+                  <option value="mb">Multibanco</option>
+                  <option value="vi">Bank Transfer</option>
+                </select>
+          </div>
+          <div class="btn-purchase" style="margin-top: 10%;">
+            <button type="button"  class="btn btn-dark btn-purchase " id="payTicket">PAY</button>
+          </div>
+        </div>`;
+        
+        document.getElementById('payTicket').addEventListener('click', () => payTicket(checkoutData));
+      });
+                
+        // Fetch EasyPay manifest
+        async function payTicket(checkoutData) {
+          // Get selected payment type
+          const paymentType = document.getElementById('paymentType').value;
+
+          try {
+            // 1. Send request to backend to get manifest
+            const response = await fetch('/checkout/payment', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                
+                body: JSON.stringify({
+                name: checkoutData.personalInfo.name,
+                email: checkoutData.personalInfo.email,
+                amount: checkoutData.cartTotal * 100,
+                type:paymentType
+              }),
+            });      
+              } catch (error) {
+            console.error("Error starting payment:", error);
         }
-
-        checkoutInstance = easypayCheckout.startCheckout(manifest, config)
       }
-
-      /**
-       * Gets a Checkout Manifest by using the server-side APIs
-       * and initializes the easypay Checkout SDK with it.
-       * @see app.js for the server-side request.
-       */
-      function getCheckoutManifest() {
-        const req = new XMLHttpRequest()
-        req.onreadystatechange = (e) => {
-          if (req.readyState === XMLHttpRequest.DONE) {
-            if (req.status === 200) {
-              manifest = JSON.parse(req.responseText)
-              initEasypayCheckoutSDK(manifest)
-            } else {
-              console.error(`Error ${req.status} ${req.statusText}`, req.responseText)
-            }
-          }
-        }
-        const operation = sessionStorage.getItem('operation') || 'sale'
-        const url = `/checkoutmanifest/${sessionStorage.getItem(
-          'paymentType'
-        )}?operation=${operation}`
-        req.open('GET', url)
-        req.send()
-      }
-
-      getIframeUrl(getCheckoutManifest)
-    </script>
+         </script>
+        </div>
 
       <!--Footer-->
      <div class="container" style="padding:2vh;">
@@ -183,4 +128,4 @@
   </div>
    
     </body>
-</html>
+  </html>
