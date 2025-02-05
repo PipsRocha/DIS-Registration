@@ -8,23 +8,28 @@ const { EASY_PAY_API_KEY, API_BASE_URL, EASY_PAY_ACCOUNT_ID } = process.env;
  */
 const createPayment = async (paymentDetails) => {
     try {
-
         const response = await fetch(`${API_BASE_URL}`, {
             headers: {
                 'Content-Type': 'application/json',
                 AccountId: EASY_PAY_ACCOUNT_ID,
-                Authorization: `Bearer ${EASY_PAY_API_KEY}`
+                ApiKey: EASY_PAY_API_KEY
               },
               paymentDetails,
         });
-        return response.data;
+        
+        if (!response.ok) {
+            const errorData = await response.json(); // Extract error response data
+            console.log(response)
+            throw new Error(errorData.error || response.statusText);
+        }
+
+        const data = await response.json(); // Extract success response data
+        return data;
     } catch (error) {
-        console.error("EasyPay API Error:", error.response?.data || error.message);
-        console.error("Error Status Code:", error.response?.status);
-        throw new Error(error.response?.data?.error || "Failed to create payment");
+        console.error("EasyPay API Error:", error.message);
+        throw new Error(error.message || "Failed to create payment");
     }
 };
-
 
 module.exports = {
     createPayment,
