@@ -90,16 +90,18 @@
                 body: JSON.stringify({
                 name: checkoutData.personalInfo.name,
                 email: checkoutData.personalInfo.email,
-                amount: checkoutData.cartTotal * 100,
+                amount: checkoutData.cartTotal,
+                phone: checkoutData.billingInfo.phone,
+                vat: checkoutData.billingInfo.vat,
                 type:paymentType
               }),
             });      
               } catch (error) {
             console.error("Error starting payment:", error);
+          }
         }
-      }
-         </script>
-        </div>
+        </script>
+      </div>
 
       <!--Footer-->
      <div class="container" style="padding:2vh;">

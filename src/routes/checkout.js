@@ -4,42 +4,30 @@ const router = express.Router();
 
 router.post('/payment', async (req, res) => {
     try {
-        const { name, email, amount, type } = req.body;
+        const { name, email, amount, phone, vat, type } = req.body;
         if (!type) {
             return res.status(400).json({ error: "Payment type is required" });
         }
 
-        console.log('Request Body:', req.body);
+        //console.log('Request Body:', req.body);
 
         const paymentData = {
-            payment: {
-                methods: type,
-                type: "sale",
-                capture: {
-                    descriptive: "Purchase in MyStore"
-                },
-                currency: "EUR",
-                expiration_time: null
+            capture: {
+                descriptive: "DIS Registration"
             },
-            order: {
-                items: [
-                    {
-                        description: "Registration Fee",
-                        quantity: 1,
-                        key: "registration-fee",
-                        value: amount
-                    }
-                ],
-                key: "order",
-                value: amount
+            currency: "EUR",
+            value: amount,
+            method: type,
+            customer: {
+                name: name,
+                email: email,
+                phone: phone,
+                phone_indicative: '+351',
+                key: `${name}-${amount}`,
+                fiscal_number: vat
             },
-            buyer: { name, email },
-            url_return: {
-                success: "/aftercheckout.html",
-                error: "https://yourwebsite.com/error"
-            }
         };
-        console.log("Payment Data:", JSON.stringify(paymentData, null, 2));
+        //console.log("Payment Data:", JSON.stringify(paymentData, null, 2));
 
         const response = await createPayment(paymentData);
         

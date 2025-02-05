@@ -8,13 +8,15 @@ const { EASY_PAY_API_KEY, API_BASE_URL, EASY_PAY_ACCOUNT_ID } = process.env;
  */
 const createPayment = async (paymentDetails) => {
     try {
+        console.log(paymentDetails)
         const response = await fetch(`${API_BASE_URL}`, {
+            method: "POST",
             headers: {
                 'Content-Type': 'application/json',
                 AccountId: EASY_PAY_ACCOUNT_ID,
                 ApiKey: EASY_PAY_API_KEY
               },
-              paymentDetails,
+              body: JSON.stringify(paymentDetails),
         });
         
         if (!response.ok) {
