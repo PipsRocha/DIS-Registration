@@ -30,7 +30,10 @@ router.post('/payment', async (req, res) => {
         //console.log("Payment Data:", JSON.stringify(paymentData, null, 2));
 
         const response = await createPayment(paymentData);
+        const result = await response.json();
         
+
+
         res.json(response);
     } catch (err) {
         if (err.response && err.response.status) {
