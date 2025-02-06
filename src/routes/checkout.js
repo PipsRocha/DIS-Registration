@@ -30,18 +30,35 @@ router.post('/payment', async (req, res) => {
         //console.log("Payment Data:", JSON.stringify(paymentData, null, 2));
 
         const response = await createPayment(paymentData);
-        const result = await response.json();
         
-
-
-        res.json(response);
+        console.log("API Response:", JSON.stringify(response, null, 2));
+        // Handle the response based on the payment method type
+        if (response && response.method) {
+            console.log("I am in");
+            if (response.method.type === 'mb') {
+                // Handle Multibanco response
+                const { status, entity, reference } = response.method;
+                res.json({ method: 'mb', status, entity, reference });
+            } else if (response.method.type === 'cc') {
+                // Handle Credit Card response
+                const { url, status } = response.method;
+                res.json({ method: 'cc', status, url });
+            } else if (response.method.type === 'vi') {
+                // Handle Virtual IBAN response
+                const { iban, status } = response.method;
+                res.json({ method: 'vi', status, iban });
+            } else {
+                res.json(response);
+            }
+        } else {
+            res.status(500).json({ error: "An unexpected error occurred" });
+        }
     } catch (err) {
+        console.error("Error making payment:", err);
         if (err.response && err.response.status) {
-            // EasyPay API returned an error
             res.status(err.response.status).json({ error: err.response.data });
         } else {
-            // Internal server error
-            res.status(500).json({ error: "An unexpected error occurred" });
+            res.status(500).json({ error: "An unexpected error occurred 2" });
         }
     }
 });

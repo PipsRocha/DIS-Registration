@@ -102,31 +102,33 @@
             });
 
             const result = await response.json();
-            if(!response.ok){
-              document.getElementById('easypay-response').innerText = `Payment Failed: ${displayJSON(result)}`;
-            } else{
-              document.getElementById('easypay-response').innerText = `Payment Successful: ${displayJSON(result)}`;
-            }
-              } catch (error) {
-            console.error("Error starting payment:", error);
-          }
-        }
-        function displayJSON(jsonData) {
-          let htmlContent = '';
 
-          for (const key in jsonData) {
-              if (jsonData.hasOwnProperty(key)) {
-                  htmlContent += `<h3>${key}</h3><ul>`;
-                  for (const subKey in jsonData[key]) {
-                      if (jsonData[key].hasOwnProperty(subKey)) {
-                          htmlContent += `<li><strong>${subKey}:</strong> ${jsonData[key][subKey]}</li>`;
-                      }
-                  }
-                  htmlContent += '</ul>';
-              }
-          }
-          return htmlContent;
-      }
+            if (!response.ok) {
+                document.getElementById('easypay-response').innerText = `Payment Failed: ${result.error}`;
+            } else {
+                if (result.method === 'mb') {
+                    document.getElementById('easypay-response').innerHTML = `
+                        <p>Payment Status: ${result.status}</p>
+                        <p>Entity: ${result.entity}</p>
+                        <p>Reference: ${result.reference}</p>
+                    `;
+                } else if (result.method === 'cc') {
+                    document.getElementById('easypay-response').innerHTML = `
+                        <p>Complete your payment at the following URL: <a href="${result.url}" target="_blank">${result.url}</a></p>
+                    `;
+                } else if (result.method === 'vi') {
+                    document.getElementById('easypay-response').innerHTML = `
+                        <p>IBAN: ${result.iban}</p>
+                    `;
+                } else {
+                    document.getElementById('easypay-response').innerText = `Payment Successful: ${JSON.stringify(result)}`;
+                }
+            }
+            } catch (error) {
+            document.getElementById('easypay-response').innerText = `Payment Failed: ${error.message}`;
+            console.error("Error starting payment:", error);
+            }}
+
 
         </script>
       </div>
