@@ -1,4 +1,3 @@
-
 if (document.readyState == 'loading'){
     document.addEventListener('DOMContentLoaded' , ready);
 }
@@ -194,7 +193,8 @@ function purchaseTicket() {
     // Store the data in localStorage for use in checkout-page.html
     localStorage.setItem('checkoutData', JSON.stringify(data));
     
-
+    //send to database
+    submitForm(data);
     // Redirect to the checkout page
     window.location.href = 'checkout-page.html';
 }
@@ -230,3 +230,23 @@ function updateCartTotal() {
         items: cartItems
     };
 }
+
+function submitForm(data) {
+  
+    fetch('https://script.google.com/macros/s/AKfycbylfBKQ7LB6_oxgUyre_hyqymCsAMEaRx_wpZvRi8NwuBakDIA4se_7zSiZXfJzgJAC/exec', {
+      method: 'POST',
+      body: data
+    }).then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok: ' + response.statusText);
+      }
+      return response.text();
+    }).then((text) => {
+      console.log(text);
+      alert('Form submitted successfully');
+    }).catch((error) => {
+      console.error('There was a problem with the fetch operation:', error);
+      alert('Error submitting data: ' + error.message);
+    });
+  }
+  

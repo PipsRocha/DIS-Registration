@@ -1,7 +1,7 @@
 {
   "name": "dis-registration-form",
   "version": "1.0.0",
-  "main": "script.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -15,8 +15,9 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "firebase": "^11.2.0",
+    "open": "^8.4.0",
     "swagger-autogen": "^2.23.7",
-    "swagger-ui-express": "^5.0.1",
-    "open":"^8.4.0"
+    "swagger-ui-express": "^5.0.1"
   }
 }
