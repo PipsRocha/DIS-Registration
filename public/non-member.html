@@ -6,474 +6,472 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Non-Member Registration Page - DIS 2025</title>
 
-    <!--Bootstrap -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-   </head>
-    
-     <body>
-       <!-- Custom Colors-->
-       <style>
-         body {
-           background-color: #F9F9F9;
-           color: #005c99;
-           font-family: 'Arial', sans-serif;
-         }
-     </style>
-     
-       <!--Heading-->
-       <nav class="navbar sticky-top navbar-expand-m justify-content-between flex-column flex-md-row navbar-light" style="background-color: #F9F9F9;">
-         <a class="navbar-brand" href="https://dis.acm.org/2025/">
-           <img src="images/DIS_branding-08.png" width="60" alt=""> DIS 2025
-         </a>
-           <a href="index.html" class="btn btn-link"> Main Registration Page</a>
-           <a href="https://dis.acm.org/2025/attending" class="btn btn-link"> Registration Rates and Information </a>
-       </nav>
-     
-       <div class="float-sm-left"style="padding-bottom:2vh;">
-         <img src="images/header_homepage.jpg" class="img-fluid" alt="Responsive image">
-       </div>
-       
- 
-     <div class="container">
-      <br>
-         <h2>ACM Policies</h2>
-         <p> Click to review <a href="https://www.acm.org/about-acm/privacy-policy">ACM's Privacy Policy</a>.</p>
-         In participating, I acknowledge <a href="https://www.acm.org/about-acm/policy-against-harassment">ACM's Policy Against Harassment</a> at ACM Activities and agree that behavior such as the following will constitute grounds for actions against me: 
-         <ul>
-         <li>Abusive action directed at an individual, such as threats, intimidation, or bullying</li>
-         <li>Racism, homophobia, and other behavior that discriminates against a group or class of people</li>
-         <li>Sexual harassment of any kind, such as unwelcome sexual advances or words/actions of a sexual nature </li>
-         </ul>
-         <p>If you are involved in or witness any such incident, please inform the event organizers.</p>
-         <p>
-         ACM is located in the United States and ACM will have access to the data you provided as part of the registration process. Please refer to the “Global Transfer of Personal Information” section of our Privacy Policy for more details.
-         </p>
-         <p>* Acceptance of ACM’s Policies are required to register for this event.</p>
-         <input type="checkbox"  class="form-check-input" id="acmtc" value="true" required>
-         <label class="form-check-label" for="acmtc">I acknowledge that I read and agreed to ACM's policie </label>
-         </p>
-     </div>
- 
-     <!-- Personal Info -->
-     <div class="container">
-        <form id="personalInfo">
+      <!--Bootstrap -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
-         <legend>Personal Information</legend>
-         <p>Fill out the information below to continue.</p>
-         
-         <label for="name">First Name:</label>
-         <input
-           type="text"
-           id="fname"
-           name="name"
-           placeholder="First Name"
-           class="form-control"
-           required
-         />
+     </head>
       
-        
-         <label for="name">Last Name:</label>
-         <input
-           type="text"
-           id="lname"
-           name="name"
-           placeholder="Last Name"
-           class="form-control"
-           required
-         />
+       <body>
+         <!-- Custom Colors-->
+         <style>
+           body {
+             background-color: #F9F9F9;
+             color: #005c99;
+             font-family: 'Arial', sans-serif;
+           }
+       </style>
+       
+         <!--Heading-->
+         <nav class="navbar sticky-top navbar-expand-m justify-content-between flex-column flex-md-row navbar-light" style="background-color: #F9F9F9;">
+           <a class="navbar-brand" href="https://dis.acm.org/2025/">
+             <img src="images/DIS_branding-08.png" width="60" alt=""> DIS 2025
+           </a>
+             <a href="index.html" class="btn btn-link"> Main Registration Page</a>
+             <a href="https://dis.acm.org/2025/attending" class="btn btn-link"> Registration Rates and Information </a>
+         </nav>
+       
+         <div class="float-sm-left" style="padding-bottom:2vh;">
+           <img src="images/header_homepage.jpg" class="img-fluid" alt="Responsive image">
+         </div>
          
-
-         <label for="email">Email:</label>
-         <input
-           type="email"
-           id="email"
-           name="email"
-           placeholder=""
-           required
-           class="form-control"
-           aria-describedby="emailHelp"
-         />
-         <small id="emailHelp" class="form-text text-muted">ACM Members: be sure to enter the email address associated with your ACM Membership.</small>
-        
-
-         <label for="pronouns">Preferred pronouns:</label>
-         <input
-           type="text"
-           id="pronouns"
-           name="pronouns"
-           placeholder=""
-           class="form-control"
-           required
-         />
-         <br>
-
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="registrationType" id="registrationType1" value="student-non-member">
-          <label class="form-check-label" for="registrationType1">
-            Student Non-Member
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="registrationType" id="registrationType2" value="professional-non-member">
-          <label class="form-check-label" for="registrationType2">
-            Professional Non-Member
-          </label>
-        </div>
-     </form>
-
-     <small id="studentHelp" class="form-text text-muted">Students must provide evidence of enrollment in an institution.</small>
-     <div class="input-group mb-3">
-       <div class="custom-file">
-         <input type="file" class="custom-file-input" id="studentcheck" aria-describedby="studentHelp">
-         <label class="custom-file-label" for="studentcheck">Choose file</label>
-       </div>
-       <div class="input-group-append">
-         <span class="input-group-text" id="">Upload</span>
-       </div>
-     </div>
-
-    </div>
-     
-     <!----------------------------------------------------------------------------------->
- 
-     <!--Product Cards-->
-     <section id="product-cards">
-      <div class="container">
-       
-         <div class="row">
-          <div class="col-sm-6">
-           <div class="card h-100"> 
-             <div class="card-body">
-               <h5 class="card-title shop-item-title">In-Person Full Conference</h5>
-               <p class="card-text shop-item-price" id="price-full"> € 750.00</p>
-               <button type="button" style="width: 100%;" class="btn btn-dark mt-auto shop-item-button"></i>Select</button>
-              </div>
-            </div>
-            </div>
-            
-            <div class="col-sm-6">
-            <div class="card h-100">
-             <div class="card-body">
-               <h5 class="card-title shop-item-title">Workshop</h5>
-               <p class="card-text shop-item-price" id="price-workshop">€ 70.00</p>
-               <button type="button" style="width: 100%;" class="btn btn-dark mt-auto shop-item-button">Select</button>
-             </div>
-            </div>
-           </div>
-        </div>
-      </div>
-       
-     </section>
- 
-     <!----------------------------------------------------------------------------------->
-     <!--Badge and Communication Info-->
-     <div class="container">
-        <form id="badgeInfo">
-
-         <legend>Badge Information</legend>
-         <label for="name">Preferred First Name for Badge, Emails and Communications</label>
-         <input
-           type="text"
-           id="fname-badge"
-           name="name"
-           placeholder="First Name"
-           class="form-control"
-           required
-         />
-
-         <label for="name">Preferred Last Name for Badge, Emails and Communications</label>
-         <input
-           type="text"
-           id="lname-badge"
-           name="name"
-           placeholder="Last Name"
-           class="form-control"
-           required
-         />
-
-         <label for="name">Company/Organization </label>
-         <input
-           type="text"
-           id="company"
-           name="company"
-           placeholder=""
-           class="form-control"
-           required
-         />
-
-         <label for="name">Job Title (e.g. Director, Manager, Student)</label>
-         <input
-           type="text"
-           id="job-title"
-           name="jobtitle"
-           placeholder=""
-           class="form-control"
-           required
-         />
-
-         <label for="pronouns">Preferred pronouns:</label>
-         <input
-           type="text"
-           id="pronouns"
-           name="pronouns"
-           placeholder=""
-           class="form-control"
-           required
-         />
-
-         <label for="pronouns">Do you have a disability or special need that impacts your access to ACM conferences, special interest groups, publications, or digital resources?</label>
-         <input
-           type="text"
-           id="sneeds-acm"
-           name="sneeds-acm"
-           placeholder=""
-           class="form-control"
-           required
-         />
-
-         <label for="pronouns">Please tell us if there is anything we can do to ensure your participation is barrier-free. Potential requests include things like sign language interpretation, closed captioning, a pre-conference orientation tour of the virtual conference interface, or neurodivergent needs. We will do our best to accommodate all requests made by February 28th, 2025. Any request after this deadline may be difficult to fulfill depending on the type of request. Please note that we strive to be an inclusive, accessible conference, but not all requests can be guaranteed. If you have questions, please contact accessibility@chi2025.acm.org.
-         </label>
-         <input
-           type="text"
-           id="sneeds-conference"
-           name="sneeds-conference"
-           placeholder=""
-           class="form-control"
-           required
-         />
-     </form>
- 
-     <!-- Billing Info -->
-     <form id="billingInfo">
-
-         <label for="name">First Name for Billing and Receipts </label>
-         <input
-           type="text"
-           id="fname-billing"
-           name="name"
-           placeholder="First Name"
-           class="form-control"
-           required
-         />
-
-         <label for="name">Last Name for Billing and Receipts </label>
-         <input
-           type="text"
-           id="lname"
-           name="name"
-           placeholder="Last Name"
-           class="form-control"
-           required
-         />
-
-         <label for="phone">Telephone Number (please include country code)</label>
-         <input
-           type="text"
-           id="phone"
-           name="phone"
-           placeholder="(+1)"
-           class="form-control"
-           required
-         />
-
-         <label for="Physical Address">Physical Address - Billing Purposes</label>
-         <input
-           type="text"
-           id="address"
-           name="address"
-           placeholder=""
-           class="form-control"
-           required
-         />
-
-         <label for="country">Country/Region</label>
-         <input
-           type="text"
-           id="country"
-           name="country"
-           placeholder="Country"
-           class="form-control"
-           required
-         />
- 
-         <label for="city">City</label>
-         <input
-           type="text"
-           id="city"
-           name="city"
-           placeholder="City"
-           class="form-control"
-           required
-         />
-
-         <label for="state">State/Province</label>
-         <input
-           type="text"
-           id="state"
-           name="state"
-           placeholder="state/Province"
-           class="form-control"
-           required
-         />
-         <br>
- 
-         <label for="postal-code"> ZIP/Postal Code</label>
-         <input
-           type="text"
-           id="postal-code"
-           name="postal-code"
-           placeholder="ZIP/Postal Code"
-           class="form-control"
-           required
-         /><br>
-
-         <label for="vat">Company VAT Number (if applicable):</label>
-         <input
-           type="text"
-           id="vat"
-           name="vat"
-           placeholder="VAT Number"
-           class="form-control"
-           required
-         />
-     </form>
-    </div>
- 
-     <!--Preferences Info -->
-     <div class="container">
-      <form id="preferencesInfo">
-
-         <legend>Preferences</legend>
-         <label for="speaker">Are you a speaker/presenter of accepted work for DIS 2025?</label>
-          <select id= "speaker" name="speaker" required>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-
-         <label for="email-consent">My email address and postal mailing address may be made available to sponsors and exhibitors. NOTE: Saying “Yes" makes it possible for our sponsors and exhibitors to reach out to invite you to social events, provide information about recruiting and internship opportunities, and inform you about product demonstrations and other special opportunities such as discounts on publications.</label>
-          <select id="email-consent" name="email-consent" required>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-
-         <label for="postal-mail-consent">Postal Mail Opt-Out: ACM occasionally makes its conference attendee lists available to companies and other societies for IT related mailings. Please check the box below if you do not wish to share your mailing information.        </label>
-         <select id="postal-mail-consent" name="postal-mail-consent" required>
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-         <label for="email-opt-in">E-mail Opt-In: ACM does not sell, rent, or exchange email addresses of its members, conference attendees, etc. Conference attendees have the option of receiving announcements about new, improved and updated products and services available through ACM. Please check one of the following which will apply to the appearance of your name on those lists:This question is required.</label>
-         <select id="email-opt-in" name="email-opt-in" required>
-          <option value="yes">Yes</option>
-          <option value="no">No</option>
-        </select>
-     </form>
-    </div>
- 
-     <!-- ACM Covid Info -->
-    <div class="container">
-     <h2>ACM COVID-19 DISCLOSURE & LIABILITY WAIVER</h2>
-     <p>The Association for Computing Machinery (“ACM”) requires that any attendee or volunteer at the CHI 2025 (the “Event”) review the following material on COVID-19 prior to attending the Event.
-       COVID-19 Safety Information
- 
-       COVID-19 has been declared a worldwide pandemic by the World Health Organization.  Evidence has shown that COVID-19 can cause serious and potentially life-threatening illness and even death.  ACM urges each Event attendee or volunteer to review the Event venue’s safety protocols, should they be available, in advance of deciding whether to attend the Event.  ACM cannot guarantee that its participants, volunteers, partners, or any others in attendance will not become infected with COVID-19.
-       
-       Obligation to Comply with COVID-19 Safety Measures
-       
-       We ask and expect that all attendees and volunteers will follow any and all applicable recommendations of the Centers for Disease Control and Prevention and the World Health Organization concerning the need to isolate, quarantine, or take other steps to prevent spreading COVID-19.
-       Liability Waiver and Release of Claims
-       
-       I acknowledge that I derive personal satisfaction and a benefit by virtue of my participation and/or attendance at this Event and I willingly engage in this Event.
-       
-       In connection with the exposure, infection, and/or spread of COVID-19 at the Event, I hereby forever release, waive and discharge any and all liability, claims, and demands of whatever kind or nature against ACM and its affiliated partners and sponsors, including in each case, without limitation, its and their directors, officers, employees, volunteers and agents (the “Released Parties”), either in law or in equity, to the fullest extent permissible by law.  This waiver includes damages or losses caused by the negligence, fault or conduct of any kind on the part of the Released Parties.  This waiver includes, but is not limited to, death, bodily injury, illness, economic loss or out of pocket expenses, or loss or damage to property, which I, my heirs, assignees, next of kin and/or legally appointed representatives may hereinafter accrue on my behalf, which arise or may hereafter arise from my participation in the Event.
-       
-       Assumption of the Risk
-       
-       I acknowledge and understand the following:
-      </p>
-     <ul>
-       <li>Participation in this Event includes possible exposure to and illness from infectious diseases including but not limited to COVID-19.  While particular rules and personal discipline may reduce this risk, the risk of serious illness and death does exist; and</li>
-       <li>I hereby knowingly and freely assume all such risks related to illness and infectious diseases, such as COVID-19, even if arising from the negligence or fault of the Released Parties; and</li>
-       <li>I hereby knowingly assume the responsibility of reviewing the Event venue’s safety protocols before deciding whether to attend the Event and acknowledge that the decision of whether to attend the Event is solely mine; and</li>
-       <li>I hereby knowingly assume the risk of injury, harm and loss associated with the Event, including any injury, harm, and loss caused by the negligence, fault or conduct of any kind on the part of the Released Parties; and </li>
-       <li>I hereby knowingly assume the risk of any COVID-19 related travel costs I may incur in connection with attendance at the Event, including, but not limited to, the costs associated with any mandatory quarantine regulations, cancelled travel, etc.</li>
-     </ul>
-     <h5>Choice of Law and Forum </h5>
-     <input type="checkbox"  class="form-check-input" id="acmlaw" value="true" required>
-     <label class="form-check-label" for="acmlaw">I understand that the law of the State of New York will apply to this agreement and that the exclusive venue for any dispute arising out of this agreement shall be the State or Federal courts in New York. </label>
-     <small id="emailHelp" class="form-text text-muted">This question is required</small>
-     <br>
-    </div>
-
-     <div class="container">
-      <h5> DIS 2025 In-person Notice:</h5>
-        <p>There are no restrictions for travelers at airports in the Autonomous Region of Madeira. Mask use is now optional in most settings (except hospitals), though still recommended in crowded areas and for high-risk individuals, such as the elderly.</p>
-        
-        <input type="checkbox"  class="form-check-input" id="acmCovid" value="true" required>
-        <label class="form-check-label" for="acmCovid">I accept and acknowledge that I have carefully read and understand all provisions of this release and waive my rights concerning liability as described above in the ACM COVID-19 Disclosure and Liability Waiver and the above DIS 2025 In-person Notice. </p>
-        <small id="required" class="form-text text-muted">This question is required.</small>
+   
+       <div class="container">
         <br>
-    </div>
+           <h2>ACM Policies</h2>
+           <p> Click to review <a href="https://www.acm.org/about-acm/privacy-policy">ACM's Privacy Policy</a>.</p>
+           In participating, I acknowledge <a href="https://www.acm.org/about-acm/policy-against-harassment">ACM's Policy Against Harassment</a> at ACM Activities and agree that behavior such as the following will constitute grounds for actions against me: 
+           <ul>
+           <li>Abusive action directed at an individual, such as threats, intimidation, or bullying</li>
+           <li>Racism, homophobia, and other behavior that discriminates against a group or class of people</li>
+           <li>Sexual harassment of any kind, such as unwelcome sexual advances or words/actions of a sexual nature </li>
+           </ul>
+           <p>If you are involved in or witness any such incident, please inform the event organizers.</p>
+           <p>
+           ACM is located in the United States and ACM will have access to the data you provided as part of the registration process. Please refer to the “Global Transfer of Personal Information” section of our Privacy Policy for more details.
+           </p>
+           <p>* Acceptance of ACM’s Policies are required to register for this event.</p>
+           <input type="checkbox"  class="form-check-input" id="acmtc" value="true" required>
+           <label class="form-check-label" for="acmtc">I acknowledge that I read and agreed to ACM's policie </label>
+           </p>
+       </div>
+   
+       <!-- Personal Info -->
+       <div class="container">
+          <form id="personalInfo">
   
- 
-     <!--Shopping Cart-->
-     <div class="container">
-        <section class="container content-section" id="shopping-cart">
-          <h3>Summary</h3>
-          
-          <table class="table table-hover table-cart">
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Price</th>
-              </tr>
-            </thead>
-            <tbody class="cart-items">
-              
-              
-            </tbody>
-          </table>
-    
-          <div class="cart-total"> 
-            <strong class="cart-total-title">Total</strong>
-            <span  class="cart-total-price" style="text-align: right;">€ 0</span>
-          </div>
-      
-  
-          <div class="btn-purchase" style="margin-top: 10%;">
-            <button type="button"  class="btn btn-dark btn-purchase " id="purchaseTicket">PURCHASE</button>
-          </div>
-  
-        </section>
-      </div>
-     
-     <!--Footer-->
-     <div class="container" style="padding:2vh;">
-        <div class="row align-items-center justify-content-center">
-            <a class="btn btn-floating" href="https://hci.social/@dis" aria-label="mastodon" role="button"><i class="bi bi-mastodon" ></i></a>
-           <!-- <a class="btn btn-floating" href="https://x.com/acm_dis" aria-label="x" role="button"><i class="bi bi-x" ></i></a> -->
-            <a class="btn btn-floating" href="https://www.instagram.com/acm_dis/" aria-label="instagram" role="button"><i class="bi bi-instagram"></i></a>
-            <a class="btn btn-floating" href="https://www.linkedin.com/company/acm-dis" aria-label="linkedin" role="button"><i class="bi bi-linkedin"></i></a>
-            <!-- <a class="btn btn-floating" href="https://acm-dis.bsky.social/" aria-label="bluesky" role="button"><i class="fa-brands fa-bluesky"></i></a>
-            <a class="btn btn-floating" href="https://www.threads.net/@acm_dis" aria-label="threads" role="button"><i class="bi bi-threads"></i></a> -->
-          </div>
+           <legend>Personal Information</legend>
+           <p>Fill out the information below to continue.</p>
+           
+           <label for="fname">First Name:</label>
+           <input
+             type="text"
+             id="fname"
+             name="name"
+             placeholder="First Name"
+             class="form-control"
+             required
+           />
         
-        <div class="row justify-content-center"  style="padding:2vh;">
-          <div class="col">
-            <img alt="" src="https://images.cvent.com/805440b54d1d4794ad337ef0b9cb88e5/pix/0a24906b749441e9b5bd370e489d4f5a!_!c3da50606b948eb8450cb110f8df6b9c.jpeg?f=webp" style="max-width: 20vh;">
+          
+           <label for="lname">Last Name:</label>
+           <input
+             type="text"
+             id="lname"
+             name="name"
+             placeholder="Last Name"
+             class="form-control"
+             required
+           />
+           
+  
+           <label for="email">Email:</label>
+           <input
+             type="email"
+             id="email"
+             name="email"
+             placeholder=""
+             required
+             class="form-control"
+             aria-describedby="emailHelp"
+           />
+
+           <label for="pronouns">Preferred pronouns:</label>
+           <input
+             type="text"
+             id="pronouns"
+             name="pronouns"
+             placeholder=""
+             class="form-control"
+             required
+           />
+           <br>
+  
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="registrationType" id="registrationType1" value="student-member">
+            <label class="form-check-label" for="registrationType1">
+              Student Non-Member
+            </label>
           </div>
-          <div class="col">
-            <img alt="" src="https://images.cvent.com/805440b54d1d4794ad337ef0b9cb88e5/pix/9d1b62fd7a7140d08267ebaf7ff88043!_!dffc38a4627d06d5d8305029c800b30a.jpg?f=webp" style="max-width: 20vh;">
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="registrationType" id="registrationType2" value="professional-member">
+            <label class="form-check-label" for="registrationType2">
+              Professional Non-Member
+            </label>
           </div>
-          <div class="col">
-            <img alt="" src="https://dis.acm.org/2025/wp-content/uploads/2025/01/logo_ITI-crop-300x144.png" style="max-width: 20vh;">
-          </div> <div class="col">
-            <img alt="" src="https://dis.acm.org/2025/wp-content/uploads/2025/01/logo_Madeira-crop-300x109.png" style="max-width: 20vh;">
+       </form>
+  
+       <small id="studentHelp" class="form-text text-muted">Students must provide evidence of enrollment in an institution.</small>
+       <div class="input-group mb-3">
+         <div class="custom-file">
+           <input type="file" class="custom-file-input" id="studentcheck" aria-describedby="studentHelp">
+           <label class="custom-file-label" for="studentcheck">Choose file</label>
+         </div>
+         <div class="input-group-append">
+           <span class="input-group-text" id="">Upload</span>
+         </div>
+       </div>
+  
+      </div>
+       
+       <!----------------------------------------------------------------------------------->
+   
+       <!--Product Cards-->
+       <section id="product-cards">
+        <div class="container">
+         
+           <div class="row">
+            <div class="col-sm-6">
+             <div class="card h-100"> 
+               <div class="card-body">
+                 <h5 class="card-title shop-item-title">In-Person Full Conference</h5>
+                 <p class="card-text shop-item-price" id="price-full"> € 750.00</p>
+                 <button type="button" style="width: 100%;" class="btn btn-dark mt-auto shop-item-button"></i>Select</button>
+                </div>
+              </div>
+              </div>
+              
+              <div class="col-sm-6">
+              <div class="card h-100">
+               <div class="card-body">
+                 <h5 class="card-title shop-item-title">Workshop</h5>
+                 <p class="card-text shop-item-price" id="price-workshop">€ 70.00</p>
+                 <button type="button" style="width: 100%;" class="btn btn-dark mt-auto shop-item-button">Select</button>
+               </div>
+              </div>
+             </div>
           </div>
         </div>
+         
+       </section>
+   
+       <!----------------------------------------------------------------------------------->
+       <!--Badge and Communication Info-->
+       <div class="container">
+          <form id="badgeInfo">
+  
+           <legend>Badge Information</legend>
+           <label for="fname-badge">Preferred First Name for Badge, Emails and Communications</label>
+           <input
+             type="text"
+             id="fname-badge"
+             name="name"
+             placeholder="First Name"
+             class="form-control"
+             required
+           />
+  
+           <label for="lname-badge">Preferred Last Name for Badge, Emails and Communications</label>
+           <input
+             type="text"
+             id="lname-badge"
+             name="name"
+             placeholder="Last Name"
+             class="form-control"
+             required
+           />
+  
+           <label for="company">Company/Organization </label>
+           <input
+             type="text"
+             id="company"
+             name="company"
+             placeholder=""
+             class="form-control"
+             required
+           />
+  
+           <label for="job-title">Job Title (e.g. Director, Manager, Student)</label>
+           <input
+             type="text"
+             id="job-title"
+             name="jobtitle"
+             placeholder=""
+             class="form-control"
+             required
+           />
+  
+           <label for="pronouns">Preferred pronouns:</label>
+           <input
+             type="text"
+             id="pronouns"
+             name="pronouns"
+             placeholder=""
+             class="form-control"
+             required
+           />
+  
+           <label for="sneeds-acm">Do you have a disability or special need that impacts your access to ACM conferences, special interest groups, publications, or digital resources?</label>
+           <input
+             type="text"
+             id="sneeds-acm"
+             name="sneeds-acm"
+             placeholder=""
+             class="form-control"
+             required
+           />
+  
+           <label for="sneeds-conference">Please tell us if there is anything we can do to ensure your participation is barrier-free. Potential requests include things like sign language interpretation, closed captioning, a pre-conference orientation tour of the virtual conference interface, or neurodivergent needs. We will do our best to accommodate all requests made. Please note that we strive to be an inclusive, accessible conference, but not all requests can be guaranteed. If you have questions, please contact plurality@dis2025.acm.org.
+           </label>
+           <input
+             type="text"
+             id="sneeds-conference"
+             name="sneeds-conference"
+             placeholder=""
+             class="form-control"
+             required
+           />
+       </form>
+   
+       <!-- Billing Info -->
+       <form id="billingInfo">
+  
+           <label for="fname-billing">First Name for Billing and Receipts </label>
+           <input
+             type="text"
+             id="fname-billing"
+             name="name"
+             placeholder="First Name"
+             class="form-control"
+             required
+           />
+  
+           <label for="lname-billing">Last Name for Billing and Receipts </label>
+           <input
+             type="text"
+             id="fname-billing"
+             name="name"
+             placeholder="Last Name"
+             class="form-control"
+             required
+           />
+  
+           <label for="phone">Telephone Number (please include country code)</label>
+           <input
+             type="text"
+             id="phone"
+             name="phone"
+             placeholder="(+1)"
+             class="form-control"
+             required
+           />
+  
+           <label for="Physical Address">Physical Address - Billing Purposes</label>
+           <input
+             type="text"
+             id="address"
+             name="address"
+             placeholder=""
+             class="form-control"
+             required
+           />
+  
+           <label for="country">Country/Region</label>
+           <input
+             type="text"
+             id="country"
+             name="country"
+             placeholder="Country"
+             class="form-control"
+             required
+           />
+   
+           <label for="city">City</label>
+           <input
+             type="text"
+             id="city"
+             name="city"
+             placeholder="City"
+             class="form-control"
+             required
+           />
+  
+           <label for="state">State/Province</label>
+           <input
+             type="text"
+             id="state"
+             name="state"
+             placeholder="state/Province"
+             class="form-control"
+             required
+           />
+           <br>
+   
+           <label for="postal-code"> ZIP/Postal Code</label>
+           <input
+             type="text"
+             id="postal-code"
+             name="postal-code"
+             placeholder="ZIP/Postal Code"
+             class="form-control"
+             required
+           /><br>
+  
+           <label for="vat">Company VAT Number (if applicable):</label>
+           <input
+             type="text"
+             id="vat"
+             name="vat"
+             placeholder="VAT Number"
+             class="form-control"
+             required
+           />
+       </form>
+      </div>
+   
+       <!--Preferences Info -->
+       <div class="container">
+        <form id="preferencesInfo">
+  
+           <legend>Preferences</legend>
+           <label for="speaker">Are you a speaker/presenter of accepted work for DIS 2025?</label>
+            <select id= "speaker" name="speaker" required>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+  
+           <label for="email-consent">My email address and postal mailing address may be made available to sponsors and exhibitors. NOTE: Saying “Yes" makes it possible for our sponsors and exhibitors to reach out to invite you to social events, provide information about recruiting and internship opportunities, and inform you about product demonstrations and other special opportunities such as discounts on publications.</label>
+            <select id="email-consent" name="email-consent" required>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+  
+           <label for="postal-mail-consent">Postal Mail Opt-Out: ACM occasionally makes its conference attendee lists available to companies and other societies for IT related mailings. Please check the box below if you do not wish to share your mailing information.        </label>
+           <select id="postal-mail-consent" name="postal-mail-consent" required>
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+           <label for="email-opt-in">E-mail Opt-In: ACM does not sell, rent, or exchange email addresses of its members, conference attendees, etc. Conference attendees have the option of receiving announcements about new, improved and updated products and services available through ACM. Please check one of the following which will apply to the appearance of your name on those lists:This question is required.</label>
+           <select id="email-opt-in" name="email-opt-in" required>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+       </form>
+      </div>
+   
+       <!-- ACM Covid Info -->
+      <div class="container">
+       <h2>ACM COVID-19 DISCLOSURE & LIABILITY WAIVER</h2>
+       <p>The Association for Computing Machinery (“ACM”) requires that any attendee or volunteer at the CHI 2025 (the “Event”) review the following material on COVID-19 prior to attending the Event.
+         COVID-19 Safety Information
+   
+         COVID-19 has been declared a worldwide pandemic by the World Health Organization.  Evidence has shown that COVID-19 can cause serious and potentially life-threatening illness and even death.  ACM urges each Event attendee or volunteer to review the Event venue’s safety protocols, should they be available, in advance of deciding whether to attend the Event.  ACM cannot guarantee that its participants, volunteers, partners, or any others in attendance will not become infected with COVID-19.
+         
+         Obligation to Comply with COVID-19 Safety Measures
+         
+         We ask and expect that all attendees and volunteers will follow any and all applicable recommendations of the Centers for Disease Control and Prevention and the World Health Organization concerning the need to isolate, quarantine, or take other steps to prevent spreading COVID-19.
+         Liability Waiver and Release of Claims
+         
+         I acknowledge that I derive personal satisfaction and a benefit by virtue of my participation and/or attendance at this Event and I willingly engage in this Event.
+         
+         In connection with the exposure, infection, and/or spread of COVID-19 at the Event, I hereby forever release, waive and discharge any and all liability, claims, and demands of whatever kind or nature against ACM and its affiliated partners and sponsors, including in each case, without limitation, its and their directors, officers, employees, volunteers and agents (the “Released Parties”), either in law or in equity, to the fullest extent permissible by law.  This waiver includes damages or losses caused by the negligence, fault or conduct of any kind on the part of the Released Parties.  This waiver includes, but is not limited to, death, bodily injury, illness, economic loss or out of pocket expenses, or loss or damage to property, which I, my heirs, assignees, next of kin and/or legally appointed representatives may hereinafter accrue on my behalf, which arise or may hereafter arise from my participation in the Event.
+         
+         Assumption of the Risk
+         
+         I acknowledge and understand the following:
+        </p>
+       <ul>
+         <li>Participation in this Event includes possible exposure to and illness from infectious diseases including but not limited to COVID-19.  While particular rules and personal discipline may reduce this risk, the risk of serious illness and death does exist; and</li>
+         <li>I hereby knowingly and freely assume all such risks related to illness and infectious diseases, such as COVID-19, even if arising from the negligence or fault of the Released Parties; and</li>
+         <li>I hereby knowingly assume the responsibility of reviewing the Event venue’s safety protocols before deciding whether to attend the Event and acknowledge that the decision of whether to attend the Event is solely mine; and</li>
+         <li>I hereby knowingly assume the risk of injury, harm and loss associated with the Event, including any injury, harm, and loss caused by the negligence, fault or conduct of any kind on the part of the Released Parties; and </li>
+         <li>I hereby knowingly assume the risk of any COVID-19 related travel costs I may incur in connection with attendance at the Event, including, but not limited to, the costs associated with any mandatory quarantine regulations, cancelled travel, etc.</li>
+       </ul>
+       <h5>Choice of Law and Forum </h5>
+       <input type="checkbox"  class="form-check-input" id="acmlaw" value="true" required>
+       <label class="form-check-label" for="acmlaw">I understand that the law of the State of New York will apply to this agreement and that the exclusive venue for any dispute arising out of this agreement shall be the State or Federal courts in New York. </label>
+       <small id="emailHelp" class="form-text text-muted">This question is required</small>
+       <br>
+      </div>
+  
+       <div class="container">
+        <h5> DIS 2025 In-person Notice:</h5>
+          <p>There are no restrictions for travelers at airports in the Autonomous Region of Madeira. Mask use is now optional in most settings (except hospitals), though still recommended in crowded areas and for high-risk individuals, such as the elderly.</p>
+          
+          <input type="checkbox"  class="form-check-input" id="acmCovid" value="true" required>
+          <label class="form-check-label" for="acmCovid">I accept and acknowledge that I have carefully read and understand all provisions of this release and waive my rights concerning liability as described above in the ACM COVID-19 Disclosure and Liability Waiver and the above DIS 2025 In-person Notice. </p>
+          <small id="required" class="form-text text-muted">This question is required.</small>
+          <br>
+      </div>
+    
+   
+       <!--Shopping Cart-->
+       <div class="container">
+          <section class="container content-section" id="shopping-cart">
+            <h3>Summary</h3>
+            
+            <table class="table table-hover table-cart">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody class="cart-items">
+                
+                
+              </tbody>
+            </table>
+      
+            <div class="cart-total"> 
+              <strong class="cart-total-title">Total</strong>
+              <span  class="cart-total-price" style="text-align: right;">€ 0</span>
+            </div>
+        
+    
+            <div class="btn-purchase" style="margin-top: 10%;">
+              <button type="button"  class="btn btn-dark btn-purchase " id="purchaseTicket">PURCHASE</button>
+            </div>
+    
+          </section>
+        </div>
+       
+<!--Footer-->
+  <div class="container" style="padding:2vh;">
+    <div class="row align-items-center justify-content-center">
+        <a class="btn btn-floating" href="https://hci.social/@dis" aria-label="mastodon" role="button"><i class="bi bi-mastodon" ></i></a>
+      <!-- <a class="btn btn-floating" href="https://x.com/acm_dis" aria-label="x" role="button"><i class="bi bi-x" ></i></a> -->
+        <a class="btn btn-floating" href="https://www.instagram.com/acm_dis/" aria-label="instagram" role="button"><i class="bi bi-instagram"></i></a>
+        <a class="btn btn-floating" href="https://www.linkedin.com/company/acm-dis" aria-label="linkedin" role="button"><i class="bi bi-linkedin"></i></a>
+        <!-- <a class="btn btn-floating" href="https://acm-dis.bsky.social/" aria-label="bluesky" role="button"><i class="fa-brands fa-bluesky"></i></a>
+        <a class="btn btn-floating" href="https://www.threads.net/@acm_dis" aria-label="threads" role="button"><i class="bi bi-threads"></i></a> -->
+      </div>
+    
+    <div class="row justify-content-center"  style="padding:2vh;">
+      <div class="col">
+        <img alt="" src="https://images.cvent.com/805440b54d1d4794ad337ef0b9cb88e5/pix/0a24906b749441e9b5bd370e489d4f5a!_!c3da50606b948eb8450cb110f8df6b9c.jpeg?f=webp" style="max-width: 20vh;">
+      </div>
+      <div class="col">
+        <img alt="" src="https://images.cvent.com/805440b54d1d4794ad337ef0b9cb88e5/pix/9d1b62fd7a7140d08267ebaf7ff88043!_!dffc38a4627d06d5d8305029c800b30a.jpg?f=webp" style="max-width: 20vh;">
+      </div>
+      <div class="col">
+        <img alt="" src="https://dis.acm.org/2025/wp-content/uploads/2025/01/logo_ITI-crop-300x144.png" style="max-width: 20vh;">
+      </div> <div class="col">
+        <img alt="" src="https://dis.acm.org/2025/wp-content/uploads/2025/01/logo_Madeira-crop-300x109.png" style="max-width: 20vh;">
+      </div>
     </div>
- 
-     <!--External JS-->
-     <script src="js/script.js"></script>
-  </body>
-</html>
+  </div>
+      <!--External JS-->
+      <script src="js/script.js"></script>
+    </body>
+  </html>
