@@ -92,15 +92,46 @@
                 headers: { 'Content-Type': 'application/json' },
                 
                 body: JSON.stringify({
-                name: checkoutData.personalInfo.name,
-                email: checkoutData.personalInfo.email,
-                amount: checkoutData.cartTotal,
-                phone: checkoutData.billingInfo.phone,
-                vat: checkoutData.billingInfo.vat,
-                type:paymentType
+                  name: checkoutData.personalInfo.name,
+                  email: checkoutData.personalInfo.email,
+                  ...(checkoutData.personalInfo.acmnumber && { acmnumber: checkoutData.personalInfo.acmnumber }),
+                  registrationType: checkoutData.personalInfo.registrationType,
+
+                  company: checkoutData.badgeInfo.company,
+                  jobtitle: checkoutData.badgeInfo.jobtitle,
+                  "fname-badge": checkoutData.badgeInfo["fname-badge"],
+                  "lname-badge": checkoutData.badgeInfo["lname-badge"],
+                  pronouns: checkoutData.badgeInfo.pronouns,
+                  sneedsacm: checkoutData.badgeInfo["sneeds-acm"],
+                  sneedsconference: checkoutData.badgeInfo["sneeds-conference"],
+
+                  billingaddress: checkoutData.billingInfo.address,
+                  billingname: checkoutData.billingInfo["name-billing"],
+                  billingcity: checkoutData.billingInfo.city,
+                  billingcountry: checkoutData.billingInfo.country,
+                  phone: checkoutData.billingInfo.phone,
+                  postalcode: checkoutData.billingInfo["postal-code"],
+                  state: checkoutData.billingInfo.state,
+                  vat: checkoutData.billingInfo.vat,
+
+                  cartItems: checkoutData.cartItems[0].title,
+                  cartprice: checkoutData.cartItems[0].price,
+
+                  ...(checkoutData.cartItems[1] && {
+                      secondCartItem: checkoutData.cartItems[1].title,
+                      secondCartPrice: checkoutData.cartItems[1].price
+                  }),
+
+                  amount: checkoutData.cartTotal,
+
+                  "email-consent": checkoutData.preferencesInfo["email-consent"],
+                  "email-opt-in": checkoutData.preferencesInfo["email-opt-in"],
+                  "postal-mail-consent": checkoutData.preferencesInfo["postal-mail-consent"],
+                  speaker: checkoutData.preferencesInfo.speaker,
+                  
+                  type: paymentType
               }),
             });
-
             const result = await response.json();
 
             if (!response.ok) {
@@ -127,7 +158,8 @@
             } catch (error) {
             document.getElementById('easypay-response').innerText = `Payment Failed: ${error.message}`;
             console.error("Error starting payment:", error);
-            }}
+            }
+          }
 
 
         </script>

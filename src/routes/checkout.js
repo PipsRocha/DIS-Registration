@@ -1,5 +1,6 @@
 const express = require('express');
 const { createPayment } = require('../api/easypay');
+const { createRegistrant } = require('../notion');
 const router = express.Router();
 
 router.post('/payment', async (req, res) => {
@@ -22,7 +23,6 @@ router.post('/payment', async (req, res) => {
                 name: name,
                 email: email,
                 phone: phone,
-                phone_indicative: '+351',
                 key: `${name}-${amount}`,
                 fiscal_number: vat
             },
@@ -50,6 +50,8 @@ router.post('/payment', async (req, res) => {
             } else {
                 res.json(response);
             }
+            createRegistrant(req.body);
+
         } else {
             res.status(500).json({ error: "An unexpected error occurred" });
         }

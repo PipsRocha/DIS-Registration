@@ -192,8 +192,7 @@ function purchaseTicket() {
 
     // Store the data in localStorage for use in checkout-page.html
     localStorage.setItem('checkoutData', JSON.stringify(data));
-    
-    //send to database
+    console.log(JSON.parse(localStorage.getItem('checkoutData')))
     
     // Redirect to the checkout page
     window.location.href = 'checkout-page.html';
