@@ -255,12 +255,6 @@ const createRegistrant = async (registrantDetails) => {
             }),
         });
 
-        console.log(JSON.stringify({
-            'parent': {
-                'type': 'database_id',
-                'database_id': NOTION_DATABASE_ID },
-            'properties': registrantDetails
-        }))
         
         if (!response.ok) {
             const errorData = await response.json(); // Extract error response data
