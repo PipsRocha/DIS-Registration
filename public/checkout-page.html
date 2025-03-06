@@ -94,8 +94,10 @@
                 body: JSON.stringify({
                   name: checkoutData.personalInfo.name,
                   email: checkoutData.personalInfo.email,
-                  ...(checkoutData.personalInfo.acmnumber && { acmnumber: checkoutData.personalInfo.acmnumber }),
-                  registrationType: checkoutData.personalInfo.registrationType,
+                  ...(checkoutData.personalInfo.acmnumber
+                  ? { acmnumber: checkoutData.personalInfo.acmnumber }
+                  : { acmnumber: "Non Member" }),
+                  registrationType: checkoutData.selectedRegistrationType,
 
                   company: checkoutData.badgeInfo.company,
                   jobtitle: checkoutData.badgeInfo.jobtitle,

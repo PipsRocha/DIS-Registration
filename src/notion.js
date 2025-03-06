@@ -8,6 +8,13 @@ const { NOTION_API_KEY, NOTION_DATABASE_ID } = process.env;
  */
 const createRegistrant = async (registrantDetails) => {
     try {
+
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+
+        const confirmationNumber = `DCN25-${day}${month}${minutes}`
         
         const response = await fetch(`https://api.notion.com/v1/pages`, {
             method: "POST",
@@ -247,6 +254,15 @@ const createRegistrant = async (registrantDetails) => {
                             {
                                 "text": {
                                     "content": registrantDetails.cartItems
+                                }
+                            }
+                        ]
+                    },
+                    "Confirmation Number": {
+                        "rich_text": [
+                            {
+                                "text": {
+                                    "content": confirmationNumber
                                 }
                             }
                         ]
