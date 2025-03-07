@@ -2,18 +2,13 @@
 
 A payment integration project that connects a registration form with EasyPay API.
 
-## Table of Contents
-- [Overview](#overview)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [License](#license)
-
 ## Overview
 This project allows users to register and make payments via the EasyPay API. It includes a secure backend integration and a user-friendly interface.
+[Main Page](public/index.html)
+[After Checkout](public/aftercheckout.html)
 
 ## Features
-- User registration with validation
+- User registration
 - Payment processing with EasyPay
 
 ## Installation
@@ -26,4 +21,4 @@ This project allows users to register and make payments via the EasyPay API. It 
     Open the application in your browser: http://localhost:3000
 
 ## License
-This project is licensed under the 
+This project is licensed
