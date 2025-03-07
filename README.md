@@ -3,8 +3,11 @@
 A payment integration project that connects a registration form with EasyPay API.
 
 ## Overview
-This project allows users to register and make payments via the EasyPay API. It includes a secure backend integration and a user-friendly interface.
+This project allows users to register and make payments via the EasyPay API. It includes a secure backend integration and a user-friendly interface. Each registration is saved in a notion database. 
+Payment completion is not possible in this repository.
+
 [Main Page](public/index.html)
+
 [After Checkout](public/aftercheckout.html)
 
 ## Features
