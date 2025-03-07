@@ -50,33 +50,33 @@ function updateCartAndPrice(event) {
 
     let priceTiers = [
         { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 750.00" }, // Early bird
-        { start: new Date("2025-06-01"), end: new Date("2025-06-30"), price: "€ 880.00" }, // Ordinary
-        { start: new Date("2025-07-01"), end: new Date("2025-07-06"), price: "€ 950.00" }  // Late
+        { start: new Date("2025-06-01"), end: new Date("2025-06-30"), price: "€ 800.00" }, // Ordinary
+        { start: new Date("2025-07-05"), end: new Date("2025-07-06"), price: "€ 1000.00" }  // Late
     ];
 
     if (selectedValue === "student-non-member") {
         priceTiers = [
             { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 415.00" }, // Early bird
-            { start: new Date("2025-06-01"), end: new Date("2025-06-30"), price: "€ 550.00" }, // Ordinary
-            { start: new Date("2025-07-01"), end: new Date("2025-07-06"), price: "€ 615.00" }  // Late
+            { start: new Date("2025-06-01"), end: new Date("2025-07-03"), price: "€ 450.00" }, // Ordinary
+            { start: new Date("2025-07-04"), end: new Date("2025-07-06"), price: "€ 1000.00" }  // Late
         ];
     } else if (selectedValue === "professional-non-member") {
         priceTiers = [
-            { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 750.00" }, // Early bird
-            { start: new Date("2025-06-01"), end: new Date("2025-06-30"), price: "€ 880.00" }, // Ordinary
-            { start: new Date("2025-07-01"), end: new Date("2025-07-06"), price: "€ 950.00" }  // Late
+            { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 800.00" }, // Early bird
+            { start: new Date("2025-06-01"), end: new Date("2025-07-03"), price: "€ 800.00" }, // Ordinary
+            { start: new Date("2025-07-04"), end: new Date("2025-07-06"), price: "€ 1000.00" }  // Late
         ];
     } else if (selectedValue === "professional-member") {
         priceTiers = [
-            { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 620.00" }, // Early bird
-            { start: new Date("2025-06-01"), end: new Date("2025-06-30"), price: "€ 750.00" }, // Ordinary
-            { start: new Date("2025-07-01"), end: new Date("2025-07-06"), price: "€ 820.00" }  // Late
+            { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 650.00" }, // Early bird
+            { start: new Date("2025-06-01"), end: new Date("2025-07-03"), price: "€ 700.00" }, // Ordinary
+            { start: new Date("2025-07-04"), end: new Date("2025-07-06"), price: "€ 1000.00" }  // Late
         ];
     } else if (selectedValue === "student-member") {
         priceTiers = [
-            { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 350.00" }, // Early bird
-            { start: new Date("2025-06-01"), end: new Date("2025-06-30"), price: "€ 480.00" }, // Ordinary
-            { start: new Date("2025-07-01"), end: new Date("2025-07-06"), price: "€ 480.00" }  // Late
+            { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 375.00" }, // Early bird
+            { start: new Date("2025-06-01"), end: new Date("2025-07-03"), price: "€ 400.00" }, // Ordinary
+            { start: new Date("2025-07-04"), end: new Date("2025-07-06"), price: "€ 1000.00" }  // Late
         ];
     }
 
