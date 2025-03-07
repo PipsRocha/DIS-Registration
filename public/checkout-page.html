@@ -34,13 +34,13 @@
             <a href="https://dis.acm.org/2025/attending" class="btn btn-link"> Registration Rates and Information </a>
         </nav>
     
-        <div class="float-sm-left" style="padding-bottom:2vh;">
+        <div class="float-sm-left" >
         <img src="images/header_homepage.jpg" class="img-fluid" alt="Responsive image">
         </div>
 
         <!-- Checkout Container -->
         <div class="row justify-content-center"  style="padding:2vh;">
-          <div class="col" id="easypay-checkout"> </div>
+          <div class="col" id="easypay-checkout" style="padding-left: 10vh;"> </div>
           <div class="col" id="easypay-response"></div>
         </div>
 
@@ -61,7 +61,7 @@
             // Display user information and total amount
 
             document.getElementById('easypay-checkout').innerHTML = `
-                <h4>User Details</h4>
+                <h4><strong>User Details</strong></h4>
                <p><strong>Name:</strong> ${checkoutData.personalInfo.name}</p>
                 <p><strong>Email:</strong> ${checkoutData.personalInfo.email}</p>
                 <p><strong>Registration Type:</strong> ${checkoutData.selectedRegistrationType}</p>
@@ -72,8 +72,8 @@
                   <option value="vi">Bank Transfer</option>
                 </select>
           </div>
-          <div class="btn-purchase" style="margin-top: 10%;">
-            <button type="button"  class="btn btn-dark btn-purchase " id="payTicket">PAY</button>
+          <div class="btn-purchase" style="padding-top:2vh;">
+            <button type="button"  class="btn btn-dark btn-purchase " id="payTicket">Pay</button>
           </div>
         </div>`;
         
@@ -141,21 +141,53 @@
             } else {
                 if (result.method === 'mb') {
                     document.getElementById('easypay-response').innerHTML = `
-                        <p>Payment Status: ${result.status}</p>
-                        <p>Entity: ${result.entity}</p>
-                        <p>Reference: ${result.reference}</p>
+                      <p><strong>Please make the payment with the following details</strong></p>
+                        
+                        <p><strong>Entity:${result.entity}</strong></p>
+                        <p><strong>Reference:</strong> ${result.reference}<br>
+                        <strong>Value:</strong> ${checkoutData.cartTotal}<br>
+                          Payment Status: ${result.status}</p>
+                        
+                        <p>Once you've completed the payment, click the button below to proceed.</p>
+                        <button id="aftercheckout-btn" class="btn btn-dark btn-purchase">Proceed</button>
                     `;
+
+                    // Add a click event listener to the "Proceed to After Checkout" button
+                    document.getElementById('aftercheckout-btn').addEventListener('click', () => {
+                        window.location.href = "aftercheckout.html";
+                    });
                 } else if (result.method === 'cc') {
-                    document.getElementById('easypay-response').innerHTML = `
-                        <p>Complete your payment at the following URL: <a href="${result.url}" target="_blank">${result.url}</a></p>
-                    `;
+                    // Open the payment URL in a pop-up
+                    const popUp = window.open(result.url, "_blank", "width=600,height=400");
+
+                    // Check if the pop-up was blocked
+                    if (popUp) {
+                        // Update the `easypay-response` div to notify the user
+                        document.getElementById('easypay-response').innerText =
+                            "Allow the pop-up to complete the card payment.";
+                    } else {
+                        // Notify the user if the pop-up is blocked
+                        document.getElementById('easypay-response').innerText =
+                            "Pop-up was blocked. Please enable pop-ups in your browser to complete the payment.";
+                    }
+                    // Redirect to 'aftercheckoutpage.html' after 1 minute
+                    setTimeout(() => {
+                        window.location.href = "aftercheckout.html";
+                    }, 60000); 
                 } else if (result.method === 'vi') {
                     document.getElementById('easypay-response').innerHTML = `
-                        <p>IBAN: ${result.iban}</p>
+                        <p>Please make a bank transfer to the following IBAN:</p>
+                        <p><strong>IBAN:</strong> ${result.iban}</p>
+                        <p>Once you've completed the transfer, click the button below to proceed.</p>
+                        <button id="aftercheckout-btn" class="btn btn-dark btn-purchase">Proceed to After Checkout</button>
                     `;
-                } else {
-                    document.getElementById('easypay-response').innerText = `Payment Successful: ${JSON.stringify(result)}`;
+
+                    // Add a click event listener to the "Proceed to After Checkout" button
+                    document.getElementById('aftercheckout-btn').addEventListener('click', () => {
+                        window.location.href = "aftercheckoutpage.html";
+                    });
                 }
+
             }
             } catch (error) {
             document.getElementById('easypay-response').innerText = `Payment Failed: ${error.message}`;
