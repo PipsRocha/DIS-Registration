@@ -9,9 +9,9 @@ function ready() {
     const priceElement = document.getElementById("price-full");
 
     let priceTiers = [
-        { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 750.00" }, // Early bird
-        { start: new Date("2025-06-01"), end: new Date("2025-06-30"), price: "€ 880.00" }, // Ordinary
-        { start: new Date("2025-07-01"), end: new Date("2025-07-06"), price: "€ 950.00" }  // Late
+        { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 800.00" }, //Early Bird
+        { start: new Date("2025-06-01"), end: new Date("2025-06-30"), price: "€ 900.00" },
+        { start: new Date("2025-07-05"), end: new Date("2025-07-09"), price: "€ 1000.00" }  // On-site
     ];
 
     radios.forEach((radio) => {
@@ -49,34 +49,58 @@ function updateCartAndPrice(event) {
     const selectedValue = selectedRadio.value;
 
     let priceTiers = [
-        { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 750.00" }, // Early bird
-        { start: new Date("2025-06-01"), end: new Date("2025-07-04"), price: "€ 850.00" }, // Ordinary
-        { start: new Date("2025-07-05"), end: new Date("2025-07-06"), price: "€ 1000.00" }  // Late
+        { start: new Date("2025-01-01"), end: new Date("2025-06-03"), price: "€ 800.00" }, //Early Bird
+        { start: new Date("2025-06-04"), end: new Date("2025-07-03"), price: "€ 900.00" },
+        { start: new Date("2025-07-04"), end: new Date("2025-07-09"), price: "€ 1000.00" }  // On-site
+    ];
+
+    let priceWorkshopTiers = [
+        { start: new Date("2025-01-01"), end: new Date("2025-06-03"), price: "€ 150.00" }, //Early Bird
+        { start: new Date("2025-06-04"), end: new Date("2025-07-09"), price: "€ 180.00" }  // Late
     ];
 
     if (selectedValue === "student-non-member") {
         priceTiers = [
-            { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 450.00" }, // Early bird
-            { start: new Date("2025-06-01"), end: new Date("2025-07-03"), price: "€ 550.00" }, // Ordinary
-            { start: new Date("2025-07-04"), end: new Date("2025-07-06"), price: "€ 1000.00" }  // Late
+            { start: new Date("2025-01-01"), end: new Date("2025-06-03"), price: "€ 450.00" }, //Early Bird
+            { start: new Date("2025-06-04"), end: new Date("2025-07-03"), price: "€ 550.00" },
+            { start: new Date("2025-07-04"), end: new Date("2025-07-09"), price: "€ 1000.00" }  // On-site
+        ];
+        priceWorkshopTiers = [
+            { start: new Date("2025-01-01"), end: new Date("2025-06-03"), price: "€ 100.00" }, //Early Bird
+            { start: new Date("2025-06-04"), end: new Date("2025-07-09"), price: "€ 120.00" }  // Late
+
         ];
     } else if (selectedValue === "non-acm-member") {
         priceTiers = [
-            { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 750.00" }, // Early bird
-            { start: new Date("2025-06-01"), end: new Date("2025-07-03"), price: "€ 850.00" }, // Ordinary
-            { start: new Date("2025-07-04"), end: new Date("2025-07-06"), price: "€ 1000.00" }  // Late
+            { start: new Date("2025-01-01"), end: new Date("2025-06-03"), price: "€ 800.00" }, //Early Bird
+            { start: new Date("2025-06-04"), end: new Date("2025-07-03"), price: "€ 900.00" },
+            { start: new Date("2025-07-04"), end: new Date("2025-07-09"), price: "€ 1000.00" }  // On-site
+        ];
+        priceWorkshopTiers = [
+            { start: new Date("2025-01-01"), end: new Date("2025-06-03"), price: "€ 150.00" }, //Early Bird
+            { start: new Date("2025-06-04"), end: new Date("2025-07-09"), price: "€ 180.00" }  // Late
         ];
     } else if (selectedValue === "acm-member") {
         priceTiers = [
-            { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 650.00" }, // Early bird
-            { start: new Date("2025-06-01"), end: new Date("2025-07-03"), price: "€ 750.00" }, // Ordinary
-            { start: new Date("2025-07-04"), end: new Date("2025-07-06"), price: "€ 1000.00" }  // Late
+            { start: new Date("2025-01-01"), end: new Date("2025-06-03"), price: "€ 750.00" }, //Early Bird
+            { start: new Date("2025-06-04"), end: new Date("2025-07-03"), price: "€ 800.00" },
+            { start: new Date("2025-07-04"), end: new Date("2025-07-09"), price: "€ 1000.00" }  // On-site
+        ];
+        priceWorkshopTiers = [
+            { start: new Date("2025-01-01"), end: new Date("2025-06-03"), price: "€ 120.00" }, //Early Bird
+            { start: new Date("2025-06-04"), end: new Date("2025-07-09"), price: "€ 150.00" }  // Late
+
         ];
     } else if (selectedValue === "student-acm-member") {
         priceTiers = [
-            { start: new Date("2025-01-01"), end: new Date("2025-05-31"), price: "€ 375.00" }, // Early bird
-            { start: new Date("2025-06-01"), end: new Date("2025-07-03"), price: "€ 450.00" }, // Ordinary
-            { start: new Date("2025-07-04"), end: new Date("2025-07-06"), price: "€ 1000.00" }  // Late
+            { start: new Date("2025-01-01"), end: new Date("2025-06-03"), price: "€ 400.00" }, //Early Bird
+            { start: new Date("2025-06-04"), end: new Date("2025-07-03"), price: "€ 450.00" },
+            { start: new Date("2025-07-04"), end: new Date("2025-07-09"), price: "€ 1000.00" }  // On-site
+        ];
+        priceWorkshopTiers = [
+            { start: new Date("2025-01-01"), end: new Date("2025-06-03"), price: "€ 80.00" }, //Early Bird
+            { start: new Date("2025-06-04"), end: new Date("2025-07-09"), price: "€ 100.00" }  // Late
+
         ];
     }
 
@@ -87,26 +111,32 @@ function updateCartAndPrice(event) {
         (tier) => today >= tier.start && today <= tier.end
     );
 
+    const currentWorkshopTier = priceWorkshopTiers.find(
+        (tier) => today >= tier.start && today <= tier.end
+    );
+
     // Update the price element with the appropriate price
     const priceElement = document.getElementById("price-full");
+    const priceWorkshop = document.getElementById("price-workshop");
     if (currentTier) {
         priceElement.textContent = currentTier.price;
+        priceWorkshop.textContent = currentWorkshopTier.price;
     } else {
         priceElement.textContent = "Unavailable"; // Default if no tier matches          
     }
 
     
     // Update the price element with the appropriate price based on the date
-    const priceWorkshop = document.getElementById("price-workshop");
+    const priceGala = document.getElementById("price-dinner");
 
     // Set specific dates and prices
-    const changeDate = new Date("2025-06-01");
+    const changeDate = new Date("2025-06-04");
 
 
     if (today < changeDate) {
-        priceWorkshop.textContent = "€ 100.00";
+        priceGala.textContent = "€ 100.00";
     } else {
-        priceWorkshop.textContent = "€ 150.00";
+        priceGala.textContent = "€ 120.00";
     }
 
 
