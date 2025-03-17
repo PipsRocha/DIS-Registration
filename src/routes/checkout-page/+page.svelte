@@ -24,7 +24,7 @@
                 <select id= "paymentType" name="paymentType" required>
                 <option value="cc">Credit Card</option>
                   <option value="mb">Multibanco</option>
-                  <option value="vi">Bank Transfer</option>
+                  
                 </select>
           </div>
           <div class="btn-purchase" style="padding-top:2vh;">
@@ -102,7 +102,7 @@
           document.getElementById("easypay-response").innerHTML = `
                       <p><strong>Please make the payment with the following details</strong></p>
                         
-                        <p><strong>Entity:${result.entity}</strong></p>
+                        <p><strong>Entity:</strong> ${result.entity}</p>
                         <p><strong>Reference:</strong> ${result.reference}<br>
                         <strong>Value:</strong> ${checkoutData.cartTotal}<br>
                           Payment Status: ${result.status}</p>
@@ -139,21 +139,15 @@
           setTimeout(() => {
             window.location.href = "/aftercheckout";
           }, 60000);
-        } else if (result.method === "vi") {
-          document.getElementById("easypay-response").innerHTML = `
-                        <p>Please make a bank transfer to the following IBAN:</p>
-                        <p><strong>IBAN:</strong> ${result.iban}</p>
-                        <p>Once you've completed the transfer, click the button below to proceed.</p>
-                        <button id="aftercheckout-btn" class="btn btn-dark btn-purchase">Proceed to After Checkout</button>
-                    `;
+        } //else if (result.method === "vi") {
+          //document.getElementById("easypay-response").innerHTML = `
+                      //  <p>Please make a bank transfer to the following IBAN:</p>  <p><strong>IBAN:</strong> ${result.iban}</p><p>Once you've completed the transfer, click the button below to proceed.</p> <button id="aftercheckout-btn" class="btn btn-dark btn-purchase">Proceed to After Checkout</button> `;
 
           // Add a click event listener to the "Proceed to After Checkout" button
-          document
-            .getElementById("aftercheckout-btn")
-            .addEventListener("click", () => {
-              window.location.href = "/aftercheckout";
-            });
-        }
+          //document
+           // .getElementById("aftercheckout-btn")
+           // .addEventListener("click", () => {
+           //   window.location.href = "/aftercheckout";            });        }
       }
     } catch (error) {
       document.getElementById("easypay-response").innerText =
