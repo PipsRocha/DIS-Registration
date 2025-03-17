@@ -96,16 +96,16 @@
 
       if (!response.ok) {
         document.getElementById("easypay-response").innerText =
-          `Payment Failed: ${result.error}`;
+          `Payment Failed: ${result.easypay.error}`;
       } else {
-        if (result.method === "mb") {
+        if (result.easypay.method === "mb") {
           document.getElementById("easypay-response").innerHTML = `
                       <p><strong>Please make the payment with the following details</strong></p>
                         
-                        <p><strong>Entity:</strong> ${result.entity}</p>
-                        <p><strong>Reference:</strong> ${result.reference}<br>
+                        <p><strong>Entity:</strong> ${result.easypay.entity}</p>
+                        <p><strong>Reference:</strong> ${result.easypay.reference}<br>
                         <strong>Value:</strong> ${checkoutData.cartTotal}<br>
-                          Payment Status: ${result.status}</p>
+                          Payment Status: ${result.easypay.status}</p>
                         
                         <p>Once you've completed the payment, click the button below to proceed.</p>
                         <button id="aftercheckout-btn" class="btn btn-dark btn-purchase">Proceed</button>
@@ -117,10 +117,10 @@
             .addEventListener("click", () => {
               window.location.href = "/aftercheckout";
             });
-        } else if (result.method === "cc") {
+        } else if (result.easypay.method === "cc") {
           // Open the payment URL in a pop-up
           const popUp = window.open(
-            result.url,
+            result.easypay.url,
             "_blank",
             "width=600,height=400"
           );
