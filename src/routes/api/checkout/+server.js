@@ -43,15 +43,13 @@ export async function POST({ request, cookies }) {
                 // Handle Credit Card response
                 const { url, status } = response.method;
                 responseBody = { method: 'cc', status, url };
-            } else if (response.method.type === 'vi') {
-                // Handle Virtual IBAN response
-                const { iban, status } = response.method;
-                responseBody = { method: 'vi', status, iban };
             } else {
                 responseBody = response;
             }
-            createRegistrant(body);
-            return new Response(JSON.stringify(responseBody), { status: 200 });
+            //createRegistrant(body);
+            //return new Response(JSON.stringify(responseBody), { status: 200 });
+            const notionResponse = await createRegistrant(body);
+            return new Response(JSON.stringify({easypay: responseBody, notion: notionResponse}), { status: 200 });
 
         } else {
             return new Response("An unexpected error occurred", { status: 500 });
