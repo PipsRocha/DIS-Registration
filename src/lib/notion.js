@@ -1,12 +1,13 @@
 // Environment variables
-const { NOTION_API_KEY, NOTION_DATABASE_ID } = process.env;
+//const { NOTION_API_KEY, NOTION_DATABASE_ID } = process.env;
+import { NOTION_API_KEY, NOTION_DATABASE_ID } from '$env/static/private';
 
 /**
  * Create a registrant with Notion.
  * @param {Object} registrantDetails - The registrant data to send to Notion.
  * @returns {Promise<Object>} - The API response from Notion.
  */
-const createRegistrant = async (registrantDetails) => {
+export const createRegistrant = async (registrantDetails) => {
     try {
 
         const now = new Date();
@@ -284,8 +285,4 @@ const createRegistrant = async (registrantDetails) => {
         console.error("Notion API Error:", error.message);
         throw new Error(error.message || "Failed to create registrant");
     }
-};
-
-module.exports = {
-    createRegistrant,
 };

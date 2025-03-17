@@ -1,16 +1,15 @@
-const express = require('express');
-const { createPayment } = require('../api/easypay');
-const { createRegistrant } = require('../notion');
-const router = express.Router();
+import { createPayment } from '$lib/easypay';
+import { createRegistrant } from '$lib/notion';
 
-router.post('/payment', async (req, res) => {
+export async function POST({ request, cookies }) {
     try {
-        const { name, email, amount, phone, vat, type } = req.body;
+        const body = await request.json();
+        const { name, email, amount, phone, vat, type } = body;
         if (!type) {
-            return res.status(400).json({ error: "Payment type is required" });
+            return new Response("Payment type is required", { status: 400 });
         }
 
-        //console.log('Request Body:', req.body);
+        console.log('Request Body:', body);
 
         const paymentData = {
             capture: {
@@ -27,42 +26,42 @@ router.post('/payment', async (req, res) => {
                 fiscal_number: vat
             },
         };
-        //console.log("Payment Data:", JSON.stringify(paymentData, null, 2));
 
         const response = await createPayment(paymentData);
         
         console.log("API Response:", JSON.stringify(response, null, 2));
+        let responseBody;
+
         // Handle the response based on the payment method type
         if (response && response.method) {
             console.log("I am in");
             if (response.method.type === 'mb') {
                 // Handle Multibanco response
                 const { status, entity, reference } = response.method;
-                res.json({ method: 'mb', status, entity, reference });
+                responseBody = { method: 'mb', status, entity, reference };
             } else if (response.method.type === 'cc') {
                 // Handle Credit Card response
                 const { url, status } = response.method;
-                res.json({ method: 'cc', status, url });
+                responseBody = { method: 'cc', status, url };
             } else if (response.method.type === 'vi') {
                 // Handle Virtual IBAN response
                 const { iban, status } = response.method;
-                res.json({ method: 'vi', status, iban });
+                responseBody = { method: 'vi', status, iban };
             } else {
-                res.json(response);
+                responseBody = response;
             }
-            createRegistrant(req.body);
+            createRegistrant(body);
+            return new Response(JSON.stringify(responseBody), { status: 200 });
 
         } else {
-            res.status(500).json({ error: "An unexpected error occurred" });
+            return new Response("An unexpected error occurred", { status: 500 });
         }
     } catch (err) {
         console.error("Error making payment:", err);
         if (err.response && err.response.status) {
-            res.status(err.response.status).json({ error: err.response.data });
+            return new Response(err.response.data, { status: err.response.status });
         } else {
-            res.status(500).json({ error: "An unexpected error occurred 2" });
+            return new Response("An unexpected error occurred 2", { status: 500 });
         }
     }
-});
-
-module.exports = router;
+}

@@ -1,12 +1,12 @@
 // Environment variables
-const { EASY_PAY_API_KEY, API_BASE_URL, EASY_PAY_ACCOUNT_ID } = process.env;
+import { API_BASE_URL, EASY_PAY_ACCOUNT_ID, EASY_PAY_API_KEY } from '$env/static/private';
 
 /**
  * Create a payment with EasyPay.
  * @param {Object} paymentDetails - The payment data to send to EasyPay.
  * @returns {Promise<Object>} - The API response from EasyPay.
  */
-const createPayment = async (paymentDetails) => {
+export const createPayment = async (paymentDetails) => {
     try {
         console.log(paymentDetails)
         const response = await fetch(`${API_BASE_URL}`, {
@@ -31,8 +31,4 @@ const createPayment = async (paymentDetails) => {
         console.error("EasyPay API Error:", error.message);
         throw new Error(error.message || "Failed to create payment");
     }
-};
-
-module.exports = {
-    createPayment,
 };

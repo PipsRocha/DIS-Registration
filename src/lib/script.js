@@ -271,12 +271,12 @@ function purchaseTicket() {
         data.cartTotal = cartData.total;
     }
 
-    // Store the data in localStorage for use in checkout-page.html
+    // Store the data in localStorage for use in checkout-page
     localStorage.setItem('checkoutData', JSON.stringify(data));
     console.log(JSON.parse(localStorage.getItem('checkoutData')))
     
     // Redirect to the checkout page
-    window.location.href = 'checkout-page.html';
+    window.location.href = '/checkout-page';
 }
 
 
