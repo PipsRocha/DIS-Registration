@@ -204,7 +204,19 @@ function addItemToCart(title, price) {
     cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem);
 }
 
-function purchaseTicket() {
+async function purchaseTicket() {
+    const acmNumberField = document.getElementById('acmNumber');
+    let memberStatus = true;
+    
+    if (acmNumberField) {
+        memberStatus = await isMember(acmNumberField.value);
+    }
+    
+    if (!memberStatus) {
+        alert("Check ACM Number or type of Registration selected");
+        return;
+    }
+
     const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
     let allChecked = true;
 
@@ -309,4 +321,47 @@ function updateCartTotal() {
         total: total,
         items: cartItems
     };
+}
+
+async function isMember(acmNumber) {
+    console.log("ACM Number:", acmNumber);
+
+    if (!acmNumber) {
+        console.error("ACM Number is missing.");
+        return false;
+    }
+
+    try {
+        const response = await fetch(`/api/checkout/confRegistration?clientNo=${acmNumber}`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        console.log("API Response:", data);
+
+        if (data.THISSIGACTIVE !== "active") {
+            alert("Not an active ACM member number.");
+            return false;
+        }
+
+        const selectedRegistrationType = document.querySelector('input[name="registrationType"]:checked')?.value;
+        if (!selectedRegistrationType) {
+            console.warn("No registration type selected.");
+            return false;
+        }
+
+        console.log("Selected Registration Type:", selectedRegistrationType);
+        if (selectedRegistrationType === "acm-member") {
+            return ["prof_mbr", "sig_mbr"].includes(data.CLASS);
+        } else if (selectedRegistrationType === "student-acm-member"){
+            return ["stu_mbr", "sig_stu_mbr"].includes(data.CLASS);
+        }
+        return false;
+
+    } catch (error) {
+        console.error("Error fetching conf registration:", error);
+        return null;
+    }
 }
