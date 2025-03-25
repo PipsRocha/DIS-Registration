@@ -109,7 +109,6 @@
       >ACM Members: be sure to enter the email address associated with your ACM
       Membership.</small
     >
-
     <br />
 
     <div class="form-check">
@@ -134,7 +133,7 @@
         checked
       />
       <label class="form-check-label" for="registrationType2">
-        Non Member
+        Professional Non Member
       </label>
     </div>
   </form>
@@ -142,7 +141,7 @@
   <small id="studentHelp" class="form-text text-muted"
     >Students must provide evidence of enrollment in an institution.</small
   >
-
+  
 </div>
 
 <!----------------------------------------------------------------------------------->
@@ -151,6 +150,7 @@
 <section id="product-cards">
   <div class="container" style="padding-top: 5vh;">
     <h4>Registration</h4>
+
     <div class="row">
       <div class="col-sm-4">
         <div class="card h-100">
@@ -158,7 +158,7 @@
             <h5 class="card-title shop-item-title">
               In-Person Full Conference
             </h5>
-            <p class="card-text shop-item-price" id="price-full">€ 850.00</p>
+            <p class="card-text shop-item-price" id="price-full">€ 750.00</p>
             <button
               type="button"
               style="width: 100%;"
@@ -197,7 +197,7 @@
           </div>
         </div>
       </div>
-      * Registration includes lunch, coffee breaks and dinners.
+      <p>* Registration includes lunch, coffee breaks and dinners.</p>
     </div>
   </div>
 </section>
@@ -429,7 +429,7 @@
 </div>
 
 <!-- ACM Covid Info -->
-<div class="container" style="padding-top: 2.5vh;">
+<div class="container" style="padding-top: 2.55vh;">
   <h2>ACM COVID-19 DISCLOSURE & LIABILITY WAIVER</h2>
   <p>
     The Association for Computing Machinery (“ACM”) requires that any attendee
@@ -534,8 +534,8 @@
     >I accept and acknowledge that I have carefully read and understand all
     provisions of this release and waive my rights concerning liability as
     described above in the ACM COVID-19 Disclosure and Liability Waiver and the
-    above DIS 2025 In-person Notice.</label
-  >
+    above DIS 2025 In-person Notice.
+  </label>
   <small id="required" class="form-text text-muted"
     >This question is required.</small
   >
