@@ -207,7 +207,7 @@
           </div>
         </div>
       </div>
-      <p>* Registration includes lunch, coffee breaks and dinners.</p>
+      <p>* Registration includes lunch, coffee breaks and dinners (excluding Workshop Registration).</p>
     </div>
   </div>
 </section>
