@@ -18,6 +18,8 @@ export async function POST({ request, cookies }) {
             currency: "EUR",
             value: amount,
             method: type,
+            url_success: "https://dis-registration.travel-to-madeira.com/aftercheckout",
+            url_fail: "https://dis-registration.travel-to-madeira.com/checkoutfailure",
             customer: {
                 name: name,
                 email: email,

@@ -119,22 +119,10 @@
             });
         } else if (result.easypay.method === "cc") {
           // Open the payment URL in a pop-up
-          const popUp = window.open(
-            result.easypay.url,
-            "_blank",
-            "width=600,height=400"
-          );
+          window.location.href = result.easypay.url;
 
           // Check if the pop-up was blocked
-          if (popUp) {
-            // Update the `easypay-response` div to notify the user
-            document.getElementById("easypay-response").innerText =
-              "Allow the pop-up to complete the card payment.";
-          } else {
-            // Notify the user if the pop-up is blocked
-            document.getElementById("easypay-response").innerText =
-              "Pop-up was blocked. Please enable pop-ups in your browser to complete the payment.";
-          }
+          
           // Redirect to 'aftercheckoutpage' after 1 minute
           setTimeout(() => {
             window.location.href = "/aftercheckout";
