@@ -7,7 +7,7 @@
     <img src="images/DIS_branding-08.png" width="60" alt="" /> DIS 2025
   </a>
   <a href="/" class="btn btn-link"> Main Registration Page</a>
-  <a href="https://dis.acm.org/2025/attending/" class="btn btn-link">
+  <a href="https://dis.acm.org/2025/registration" class="btn btn-link">
     Registration Rates and Information
   </a>
 </nav>

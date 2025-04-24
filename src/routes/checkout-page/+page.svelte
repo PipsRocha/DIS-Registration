@@ -108,6 +108,7 @@
                           Payment Status: ${result.easypay.status}</p>
                         
                         <p>Once you've completed the payment, click the button below to proceed.</p>
+                        <p>Please keep the payment proof.</p>
                         <button id="aftercheckout-btn" class="btn btn-dark btn-purchase">Proceed</button>
                     `;
 
@@ -124,9 +125,6 @@
           // Check if the pop-up was blocked
           
           // Redirect to 'aftercheckoutpage' after 1 minute
-          setTimeout(() => {
-            window.location.href = "/aftercheckout";
-          }, 60000);
         } //else if (result.method === "vi") {
           //document.getElementById("easypay-response").innerHTML = `
                       //  <p>Please make a bank transfer to the following IBAN:</p>  <p><strong>IBAN:</strong> ${result.iban}</p><p>Once you've completed the transfer, click the button below to proceed.</p> <button id="aftercheckout-btn" class="btn btn-dark btn-purchase">Proceed to After Checkout</button> `;

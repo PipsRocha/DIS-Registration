@@ -25,7 +25,7 @@
   class="container justify-content-center align-items-center"
   style="padding-bottom: 2vh;"
 >
-  <h2>Something went wrong</h2>
+  <h2>Something went wrong, please try again or contact registration team!</h2>
   
 </div>
 

@@ -341,8 +341,8 @@ async function isMember(acmNumber) {
         const data = await response.json();
         console.log("API Response:", data);
 
-        if (data.THISSIGACTIVE !== "active") {
-            alert("Not an active ACM member number.");
+        if (data.CLASS == "non_mbr") {
+            alert("Not an active ACM member.");
             return false;
         }
 
