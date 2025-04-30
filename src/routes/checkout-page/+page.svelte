@@ -30,6 +30,8 @@
           <div class="btn-purchase" style="padding-top:2vh;">
             <button type="button"  class="btn btn-dark btn-purchase " id="payTicket">Pay</button>
           </div>
+        <p style="color:#BEBEBE"> Please verify that funds have not been captured before trying to proceed with another payment. <br>
+  Please take into consideration that the invoice will take at least 10 days to be sent to you. </p>
         </div>`;
 
     document
