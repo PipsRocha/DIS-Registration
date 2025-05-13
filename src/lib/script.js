@@ -1,3 +1,32 @@
+const CATEGORY_H = ['Albania', 'Argentina', 'Armenia', 'Azerbaijan', 'Belarus', 'Belize', 'Bosnia',
+    'Brazil', 'Bulgaria', 'China', 'Colombia', 'Costa Rica', 'Cuba', 'Dominica', 'Dominican Republic', 'Ecuador',
+    'El Salvador', 'Equatorial Guinea', 'Fiji', 'Gabon', 'Georgia', 'Grenada', 'Guatemala', 'Indonesia', 'Iraq', 'Jamaica',
+    'Kazakhstan', 'Kosovo', 'Libya', 'North Macedonia', 'Malaysia', 'Maldives', 'Marshall Islands', 'Mauritius', 'Mexico', 'Montenegro',
+    'Namibia', 'Palau', 'Palestine', 'Paraguay', 'Peru', 'Republic Moldova', 'Russian Federation', 'Saint Lucia', 'Serbia', 'South Africa',
+    'St. Vincent', 'Suriname', 'Thailand', 'Tonga', 'Turkey', 'Turkmenistan', 'Tuvalu', 'Venezuela'];
+
+const CATEGORY_I = ['Afghanistan', 'Algeria', 'Angola', 'Bangladesh', 'Benin', 'Bhutan', 'Bolivia', 'Burkina Faso', 'Burundi', 'Central African Republic',
+    'Cambodia', 'Cameroon', 'Cape Verde', 'Chad', 'Comoros', 'Congo', 'Congo Democratic Republic', 'Djibouti', 'Egypt', 'Eritrea', 'Eswatini', 'Ethiopia',
+    'Federal State of Micronesia', 'Gambia', 'Ghana', 'Guinea', 'Guinea-Bissau', 'Haiti', 'Honduras', 'India', 'Iran', 'Ivory Coast', 'Jordan', 'Kenya',
+    'Kiribati', 'Kyrgyzstan', 'Lebanon', 'Lesotho', 'Liberia', 'Madagascar', 'Malawi', 'Mali', 'Mauritania', 'Mongolia', 'Morocco', 'Mozambique', 'Myanmar',
+    'Nepal', 'Nicaragua', 'Niger', 'Nigeria', 'North Korea', 'Pakistan', 'Papua New Guinea', 'Lao Peoples Democratic Republic', 'Laos', 'Philippines', 'Rwanda',
+    'Samoa', 'Sao Tome and Principe', 'Senegal', 'Sierra Leone', 'Sri Lanka', 'Solomon Islands', 'Somalia', 'South Sudan', 'Sudan', 'Syria', 'Tadzhikistan', 'Tanzania',
+    'Timor-Leste', 'Togo', 'Tunisia', 'Uganda', 'Ukraine', 'Uzbekistan', 'Vanuatu', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'];
+
+const SV_MAIL = ['mail@mail.com'];
+
+const TEAM_MAIL = ['nunojnunes@tecnico.ulisboa.pt', 'hugo.nicolau@tecnico.ulisboa.pt', 'marianapestana@tecnico.ulisboa.pt', 'mara.dionisio@staff.uma.pt paulo.bala@tecnico.ulisboa.pt',
+    'cintia.franca@staff.uma.pt', 'augusto.esteves@tecnico.ulisboa.pt', 'amartaferreira@tecnico.ulisboa.pt', 'frederico.duarte@tecnico.ulisboa.pt', 'pedro.galvao.ferreira@tecnico.ulisboa.pt',
+    'shuhao.ma@tecnico.ulisboa.pt', 'valentina.nisi@tecnico.ulisboa.pt', 'beatrizseveres@tecnico.ulisboa.pt', 'patricia.piedade@tecnico.ulisboa.pt', 'filipa.rocha@tecnico.ulisboa.pt',
+    'ana.gfo.henriques@campus.ul.pt','hugalexsimon@gmail.com', 'chiara.ceccarini6@unibo.it', 'ian.r.oakley@gmail.com'];
+
+const CATEGORY_H_DISCOUNT_PERCENT = 50;
+const CATEGORY_I_DISCOUNT_PERCENT = 75;
+
+const CATEGORY_SV = 100;
+
+const CATEGORY_TEAM = 100;
+
 if (document.readyState == 'loading') {
     document.addEventListener('DOMContentLoaded', ready);
 } else {
@@ -18,8 +47,10 @@ function ready() {
         radio.addEventListener("change", updateCartAndPrice);
     });
 
+
+
     initializeCartEventListeners();
-    updateCartAndPrice(); // Initial call to update the cart and price based on the default selection
+    updateCartAndPrice();
 }
 
 function initializeCartEventListeners() {
@@ -33,6 +64,16 @@ function initializeCartEventListeners() {
     for (var i = 0; i < addToCartButtons.length; i++) {
         var button = addToCartButtons[i];
         button.addEventListener('click', addToCartClicked);
+    }
+
+    const countryInput = document.querySelector('[name="country"]');
+    if (countryInput) {
+        countryInput.addEventListener('input', updateDiscount);
+    }
+
+    const emailInput = document.querySelector('[name="email"]');
+    if (emailInput) {
+        emailInput.addEventListener('input', updateDiscount);
     }
 
     document.getElementById('purchaseTicket').addEventListener('click', purchaseTicket);
@@ -217,6 +258,7 @@ async function purchaseTicket() {
         return;
     }
 
+
     const allCheckboxes = document.querySelectorAll('input[type="checkbox"]');
     let allChecked = true;
 
@@ -288,7 +330,11 @@ async function purchaseTicket() {
     console.log(JSON.parse(localStorage.getItem('checkoutData')))
     
     // Redirect to the checkout page
-    window.location.href = '/checkout-page';
+    if (data.cartTotal == 0) {
+        window.location.href = '/complementary-checkout'
+    } else {
+        window.location.href = '/checkout-page';
+    }
 }
 
 
@@ -306,7 +352,8 @@ function updateCartTotal() {
         var price = parseFloat(priceElement.innerText.replace('€ ', ''));
         var title = titleElement.innerText;
 
-        total = total + price;
+        total += price;
+
 
         cartItems.push({
             title: title,
@@ -315,7 +362,9 @@ function updateCartTotal() {
     }
 
     total = Math.round(total * 100) / 100;
-    document.getElementsByClassName('cart-total-price')[0].innerText = '€ ' + total + '.00';
+    
+    document.getElementsByClassName('cart-total-price')[0].innerText = '€ ' + total.toFixed(2);
+
 
     return {
         total: total,
@@ -364,4 +413,76 @@ async function isMember(acmNumber) {
         console.error("Error fetching conf registration:", error);
         return null;
     }
+}
+
+function updateDiscount() {
+    const billingCountry = document.querySelector('[name="country"]')?.value?.trim();
+    const reg_mail =  document.querySelector('[name="email"]')?.value?.trim();
+
+    const isDiscountedSV = SV_MAIL.includes(reg_mail);
+    const isDiscountedTeam = TEAM_MAIL.includes(reg_mail);
+
+    const isDiscountedH = (!isDiscountedSV && !isDiscountedTeam) && CATEGORY_H.includes(billingCountry);
+    const isDiscountedI = (!isDiscountedSV && !isDiscountedTeam) && CATEGORY_I.includes(billingCountry);
+
+
+    // Remove any existing discount rows
+    const cartRows = document.querySelectorAll('.cart-row');
+    cartRows.forEach(row => {
+        if (row.dataset.type === 'discount') {
+            row.remove();
+        }
+    });
+
+    if (!isDiscountedH && !isDiscountedI && !isDiscountedSV && !isDiscountedTeam) {
+        updateCartTotal();
+        return;
+    }
+
+    const cartItems = document.getElementsByClassName('cart-items')[0];
+    const regRow = [...cartItems.getElementsByClassName('cart-row')].find(row => {
+        const title = row.querySelector('.cart-item-title')?.innerText || '';
+        return title.toLowerCase().includes('conference');
+    });
+
+    if (!regRow) {
+        updateCartTotal();
+        return;
+    }
+
+    const priceElement = regRow.querySelector('.cart-price');
+    const originalPrice = parseFloat(priceElement.innerText.replace('€ ', ''));
+
+    let discountAmount;
+    let label;
+
+    if (isDiscountedH) {
+        discountAmount = Math.round((originalPrice * CATEGORY_H_DISCOUNT_PERCENT / 100) * 100) / 100;
+        label = "Category H Discount";
+    } else if (isDiscountedI) {
+        discountAmount = Math.round((originalPrice * CATEGORY_I_DISCOUNT_PERCENT / 100) * 100) / 100;
+        label = "Category I Discount";
+    } else if (isDiscountedSV) {
+        discountAmount = Math.round((originalPrice * CATEGORY_SV / 100) * 100) / 100;
+        label = "SV Student Discount";
+    } else if (isDiscountedTeam) {
+        discountAmount = Math.round((originalPrice * CATEGORY_TEAM / 100) * 100) / 100;
+        label = "Complementary Registration";
+    }
+
+    const discountRow = document.createElement('tr');
+    discountRow.classList.add('cart-row');
+    discountRow.dataset.type = 'discount';
+    discountRow.innerHTML = `
+        <td class="cart-item cart-column">
+            <span class="cart-item-title">${label}</span>                                    
+        </td>
+        <td class="cart-item cart-column">
+            <span class="cart-price cart-column">€ -${discountAmount.toFixed(2)}</span>
+        </td>
+        <td class="cart-item cart-column"></td>
+    `;
+
+    cartItems.append(discountRow);
+    updateCartTotal();
 }

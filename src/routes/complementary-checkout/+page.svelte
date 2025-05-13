@@ -1,3 +1,86 @@
+<!-- Fetch Data -->
+<script>
+  import { onMount } from "svelte";
+
+  onMount(async () => {
+    const checkoutData = JSON.parse(localStorage.getItem("checkoutData"));
+    if (!checkoutData) {
+      alert("No checkout data found. Redirecting back to registration page.");
+      window.location.href = "/acm-member";
+      return;
+    }
+
+    document.getElementById("main-checkout").innerHTML = `
+      <h1>User Details</h1>
+      <p><strong>Name:</strong> ${checkoutData.personalInfo.name}</p>
+      <p><strong>Email:</strong> ${checkoutData.personalInfo.email}</p>
+      <p><strong>Registration Type:</strong> ${checkoutData.selectedRegistrationType}</p>
+      <p><strong>Total Amount:</strong> €${checkoutData.cartTotal.toFixed(2)}</p>
+      </br>
+      <h3>Thank you for registering for DIS 2025!</h3>
+      <p> We've received your registration details. You'll receive an email with the confirmation and details for the conference.</p>
+    `;
+
+    const paymentType = "No Payment";
+
+    const bodyData = JSON.stringify({
+      name: checkoutData.personalInfo.name,
+      email: checkoutData.personalInfo.email,
+      acmnumber: checkoutData.personalInfo.acmnumber || "Non Member",
+      registrationType: checkoutData.selectedRegistrationType,
+      company: checkoutData.badgeInfo.company,
+      jobtitle: checkoutData.badgeInfo.jobtitle,
+      "fname-badge": checkoutData.badgeInfo["fname-badge"],
+      "lname-badge": checkoutData.badgeInfo["lname-badge"],
+      pronouns: checkoutData.badgeInfo.pronouns,
+      sneedsacm: checkoutData.badgeInfo["sneeds-acm"],
+      sneedsconference: checkoutData.badgeInfo["sneeds-conference"],
+      billingaddress: checkoutData.billingInfo.address,
+      billingname: checkoutData.billingInfo["name-billing"],
+      billingcity: checkoutData.billingInfo.city,
+      billingcountry: checkoutData.billingInfo.country,
+      phone: checkoutData.billingInfo.phone,
+      postalcode: checkoutData.billingInfo["postal-code"],
+      state: checkoutData.billingInfo.state,
+      vat: checkoutData.billingInfo.vat,
+      cartItems: checkoutData.cartItems[0]?.title,
+      cartprice: checkoutData.cartItems[0]?.price,
+      ...(checkoutData.cartItems[1] && {
+        secondCartItem: checkoutData.cartItems[1].title,
+        secondCartPrice: checkoutData.cartItems[1].price,
+      }),
+      amount: checkoutData.cartTotal,
+      "email-consent": checkoutData.preferencesInfo["email-consent"],
+      "email-opt-in": checkoutData.preferencesInfo["email-opt-in"],
+      "postal-mail-consent": checkoutData.preferencesInfo["postal-mail-consent"],
+      speaker: checkoutData.preferencesInfo.speaker,
+      type: paymentType,
+    });
+
+    try {
+      const response = await fetch("/api/createRegistrant", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: bodyData,
+      });
+
+      if (!response.ok) {
+        throw new Error(await response.text());
+      }
+
+      const result = await response.json();
+      console.log("Registration successful:", result);
+    } catch (error) {
+      console.error("Error submitting registration:", error);
+      alert("Something went wrong submitting your registration.");
+    }
+  });
+</script>
+
+
+
 <!--Heading-->
 <nav
   class="navbar sticky-top navbar-expand-m justify-content-between flex-column flex-md-row navbar-light"
@@ -7,32 +90,22 @@
     <img src="images/DIS_branding-08.png" width="60" alt="" /> DIS 2025
   </a>
   <a href="/" class="btn btn-link"> Main Registration Page</a>
-  <a href="https://dis.acm.org/2025/registration" class="btn btn-link">
+  <a href="https://dis.acm.org/2025/attending" class="btn btn-link">
     Registration Rates and Information
   </a>
 </nav>
 
-<div class="float-sm-left" style="padding-bottom:2vh;">
+<div class="float-sm-left" style="padding-bottom: 5vh;">
   <img
     src="images/header_homepage.jpg"
     class="img-fluid"
-    alt="Responsive image"
+    alt="DIS 2025 in Madeira"
   />
 </div>
 
-<!-- Thank you and Hotels -->
-<div
-  class="container justify-content-center align-items-center"
-  style="padding-bottom: 2vh;"
->
-  <h2>Thank you for registering for DIS 2025!</h2>
-  <p> We've received your registration details.
-    <br/>⚠️ <b>Important:</b> You will  receive a confirmation email for trying to register.
-    <br/>If your payment goes through, we'll send you an email with with the invoice.
-    If there’s an issue with your payment, you won’t be registered — but you can try again.
-  </p>
-  <p>Please keep all proof of payment.</p>
-  <p></p>
+<!-- Checkout Container -->
+<div class="container align-items-center" style="padding-bottom: 5vh;">
+  <div class="col" id="main-checkout"></div>
 </div>
 
 <div class="container justify-content-center align-items-center">

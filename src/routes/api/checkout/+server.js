@@ -2,6 +2,13 @@ import { createPayment } from '$lib/easypay';
 import { createRegistrant } from '$lib/notion';
 
 export async function POST({ request, cookies }) {
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+    const confirmationNumber = `DCN25-${day}${month}${minutes}`;
+
     try {
         const body = await request.json();
         const { name, email, amount, phone, vat, type } = body;
@@ -9,6 +16,11 @@ export async function POST({ request, cookies }) {
             return new Response("Payment type is required", { status: 400 });
         }
 
+        console.log('Request Body:', body);
+
+        console.log('Request Body:', body);
+        body.confirmationNumber = confirmationNumber;
+        body.status = 'Waiting';
         console.log('Request Body:', body);
 
         const paymentData = {
@@ -19,12 +31,12 @@ export async function POST({ request, cookies }) {
             value: amount,
             method: type,
             url_success: "https://dis-registration.travel-to-madeira.com/aftercheckout",
-            url_fail: "https://dis-registration.travel-to-madeira.com/checkoutfailure",
+            
             customer: {
                 name: name,
                 email: email,
                 phone: phone,
-                key: `${name}-${amount}`,
+                key: confirmationNumber,
                 fiscal_number: vat
             },
         };
@@ -48,8 +60,7 @@ export async function POST({ request, cookies }) {
             } else {
                 responseBody = response;
             }
-            //createRegistrant(body);
-            //return new Response(JSON.stringify(responseBody), { status: 200 });
+
             const notionResponse = await createRegistrant(body);
             return new Response(JSON.stringify({easypay: responseBody, notion: notionResponse}), { status: 200 });
 

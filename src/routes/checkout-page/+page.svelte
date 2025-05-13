@@ -23,7 +23,7 @@
                 <p><strong>Total Amount:</strong> €${checkoutData.cartTotal.toFixed(2)}</p>
                 <select id= "paymentType" name="paymentType" required>
                 <option value="cc">Credit Card</option>
-                  <option value="mb">Multibanco</option>
+                  <option value="mb">Multibanco (Portuguese accounts)</option>
                   
                 </select>
           </div>

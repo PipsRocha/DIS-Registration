@@ -16,7 +16,7 @@
   <img
     src="images/header_homepage.jpg"
     class="img-fluid"
-    alt="Responsive image"
+    alt="Madeira DIS 2025"
   />
 </div>
 
