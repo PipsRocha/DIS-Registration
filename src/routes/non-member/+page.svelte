@@ -226,7 +226,7 @@
       type="text"
       id="workshopName"
       name="workshopName"
-      placeholder="Title"
+      placeholder="Title(s)"
       class="form-control"
     />
     <p>

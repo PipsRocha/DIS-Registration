@@ -25,7 +25,7 @@ const TEAM_MAIL = ['nunojnunes@tecnico.ulisboa.pt', 'hugo.nicolau@tecnico.ulisbo
     'cintia.franca@staff.uma.pt', 'augusto.esteves@tecnico.ulisboa.pt', 'amartaferreira@tecnico.ulisboa.pt', 'frederico.duarte@tecnico.ulisboa.pt', 'pedro.galvao.ferreira@tecnico.ulisboa.pt',
     'valentina.nisi@tecnico.ulisboa.pt', 'beatrizseveres@tecnico.ulisboa.pt', 'patricia.piedade@tecnico.ulisboa.pt', 'filipa.rocha@tecnico.ulisboa.pt',
     'ana.gfo.henriques@campus.ul.pt','hugalexsimon@gmail.com', 'chiara.ceccarini6@unibo.it', 'ian.r.oakley@gmail.com', 'doga@adobe.com', 'soraiafpaulo@tecnico.ulisboa.pt', 'catia.prandi@unibo.it',
-    'carine.lallemand@hotmail.fr', 'Ellen.do@colorado.edu', 'msgdionisio@gmail.com', 'imshuhao.ma@gmail.com'];
+    'carine.lallemand@hotmail.fr', 'Ellen.do@colorado.edu', 'msgdionisio@gmail.com', 'imshuhao.ma@gmail.com', 'ian.r.oakley@gmail.com', 'catia.prandi@unibo.it'];
 
 const CATEGORY_H_DISCOUNT_PERCENT = 50;
 const CATEGORY_I_DISCOUNT_PERCENT = 75;
@@ -231,12 +231,7 @@ function addItemToCart(title, price) {
     var cartItemNames = cartItems.getElementsByClassName('cart-item-title');
     var cartItemPrices = cartItems.getElementsByClassName('cart-price');
 
-    for (let i = 0; i < cartItemNames.length; i++) {
-        if (cartItemNames[i].innerText === title && cartItemPrices[i].innerText === price) {
-            alert('This item has already been added to the cart with the same price!');
-            return;
-        }
-    }
+    
 
     var cartRowContents = `
         <td class="cart-item cart-column">
