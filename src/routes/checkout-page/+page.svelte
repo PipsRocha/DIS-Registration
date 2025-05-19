@@ -79,9 +79,9 @@
           state: checkoutData.billingInfo.state,
           vat: checkoutData.billingInfo.vat,
 
-cartItems: checkoutData.cartItems
-  .map(item => `${item.title} (€${item.price.toFixed(2)})`)
-  .join(", "),
+          cartItems: checkoutData.cartItems
+            .map(item => `${item.title} (€${item.price.toFixed(2)})`)
+            .join(", "),
 
 
 
