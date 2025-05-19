@@ -106,8 +106,7 @@
       aria-describedby="emailHelp"
     />
     <small id="emailHelp" class="form-text text-muted"
-      >ACM Members: be sure to enter the email address associated with your ACM
-      Membership.</small
+      >ACM Members: be sure to enter the email address associated with your ACM Membership.</small
     >
 
     <label for="acmNumber">ACM Number</label>
@@ -162,7 +161,7 @@
     <h4>Registration</h4>
 
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title shop-item-title">
@@ -172,29 +171,30 @@
             <button
               type="button"
               style="width: 100%;"
-              class="btn btn-dark mt-auto shop-item-button">Select</button
-            >
+              class="btn btn-dark mt-auto shop-item-button">Select</button>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-4">
+      <div class="col-sm-6">
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title shop-item-title">Workshop</h5>
+            <p> </p>
             <p class="card-text shop-item-price" id="price-workshop">
               € 150.00
             </p>
             <button
               type="button"
               style="width: 100%;"
-              class="btn btn-dark mt-auto shop-item-button">Select</button
-            >
+              class="btn btn-dark mt-auto shop-item-button">Select</button>
           </div>
         </div>
       </div>
+      </div>
 
-      <div class="col-sm-4">
+      <div class="row">
+      <div class="col-sm-6">
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title shop-item-title">Extra Gala Dinner Ticket</h5>
@@ -202,11 +202,25 @@
             <button
               type="button"
               style="width: 100%;"
-              class="btn btn-dark mt-auto shop-item-button">Select</button
-            >
+              class="btn btn-dark mt-auto shop-item-button">Select</button>
           </div>
         </div>
       </div>
+
+      <div class="col-sm-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title shop-item-title">Companion Ticket</h5>
+            <p class="card-text shop-item-price" id="price-companion">€ 350.00</p>
+            <button
+              type="button"
+              style="width: 100%;"
+              class="btn btn-dark mt-auto shop-item-button">Select</button>
+          </div>
+        </div>
+      </div>
+
+      
       <p>* Registration includes lunch, coffee breaks and dinners (excluding Workshop Registration).</p>
     </div>
   </div>
@@ -216,6 +230,18 @@
 <!--Badge and Communication Info-->
 <div class="container" style="padding-top: 5vh;">
   <form id="badgeInfo">
+    <label for="workshopName">
+      Workshop Title</label>
+    <input
+      type="text"
+      id="workshopName"
+      name="workshopName"
+      placeholder="Title"
+      class="form-control"
+    />
+    <p>
+
+    </p>
     <legend>Badge Information</legend>
     <label for="fname-badge"
       >Preferred First Name for Badge, Emails and Communications</label
@@ -361,7 +387,7 @@
       type="text"
       id="state"
       name="state"
-      placeholder="state/Province"
+      placeholder="State/Province"
       class="form-control"
       required
     />

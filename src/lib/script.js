@@ -18,7 +18,7 @@ const SV_MAIL = ['mail@mail.com'];
 const TEAM_MAIL = ['nunojnunes@tecnico.ulisboa.pt', 'hugo.nicolau@tecnico.ulisboa.pt', 'marianapestana@tecnico.ulisboa.pt', 'mara.dionisio@staff.uma.pt paulo.bala@tecnico.ulisboa.pt',
     'cintia.franca@staff.uma.pt', 'augusto.esteves@tecnico.ulisboa.pt', 'amartaferreira@tecnico.ulisboa.pt', 'frederico.duarte@tecnico.ulisboa.pt', 'pedro.galvao.ferreira@tecnico.ulisboa.pt',
     'shuhao.ma@tecnico.ulisboa.pt', 'valentina.nisi@tecnico.ulisboa.pt', 'beatrizseveres@tecnico.ulisboa.pt', 'patricia.piedade@tecnico.ulisboa.pt', 'filipa.rocha@tecnico.ulisboa.pt',
-    'ana.gfo.henriques@campus.ul.pt','hugalexsimon@gmail.com', 'chiara.ceccarini6@unibo.it', 'ian.r.oakley@gmail.com'];
+    'ana.gfo.henriques@campus.ul.pt','hugalexsimon@gmail.com', 'chiara.ceccarini6@unibo.it', 'ian.r.oakley@gmail.com', 'doga@adobe.com', 'soraiafpaulo@tecnico.ulisboa.pt', 'catia.prandi@unibo.it'];
 
 const CATEGORY_H_DISCOUNT_PERCENT = 50;
 const CATEGORY_I_DISCOUNT_PERCENT = 75;
@@ -169,6 +169,7 @@ function updateCartAndPrice(event) {
     
     // Update the price element with the appropriate price based on the date
     const priceGala = document.getElementById("price-dinner");
+    const priceCompanion = document.getElementById("price-companion");
 
     // Set specific dates and prices
     const changeDate = new Date("2025-06-04");
@@ -176,8 +177,10 @@ function updateCartAndPrice(event) {
 
     if (today < changeDate) {
         priceGala.textContent = "€ 100.00";
+        priceCompanion.textContent = "€ 320.00";
     } else {
         priceGala.textContent = "€ 120.00";
+        priceCompanion.textContent = "€ 350.00"
     }
 
 

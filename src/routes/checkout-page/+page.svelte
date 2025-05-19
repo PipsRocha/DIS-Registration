@@ -58,6 +58,10 @@
             : { acmnumber: "Non Member" }),
           registrationType: checkoutData.selectedRegistrationType,
 
+          ...(checkoutData.badgeInfo.workshopName
+            ? { workshopTitle: checkoutData.badgeInfo.workshopName}
+            : { workshopTitle: "N/A" }),
+
           company: checkoutData.badgeInfo.company,
           jobtitle: checkoutData.badgeInfo.jobtitle,
           "fname-badge": checkoutData.badgeInfo["fname-badge"],
@@ -75,13 +79,11 @@
           state: checkoutData.billingInfo.state,
           vat: checkoutData.billingInfo.vat,
 
-          cartItems: checkoutData.cartItems[0].title,
-          cartprice: checkoutData.cartItems[0].price,
+cartItems: checkoutData.cartItems
+  .map(item => `${item.title} (€${item.price.toFixed(2)})`)
+  .join(", "),
 
-          ...(checkoutData.cartItems[1] && {
-            secondCartItem: checkoutData.cartItems[1].title,
-            secondCartPrice: checkoutData.cartItems[1].price,
-          }),
+
 
           amount: checkoutData.cartTotal,
 

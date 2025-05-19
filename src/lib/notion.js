@@ -15,7 +15,7 @@ export const createRegistrant = async (registrantDetails) => {
         const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
         const minutes = String(now.getMinutes()).padStart(2, '0');
 
-        const confirmationNumber = `DCN25-${day}${month}${minutes}`
+        
         
         const response = await fetch(`https://api.notion.com/v1/pages`, {
             method: "POST",
@@ -263,7 +263,16 @@ export const createRegistrant = async (registrantDetails) => {
                         "rich_text": [
                             {
                                 "text": {
-                                    "content": confirmationNumber
+                                    "content": registrantDetails.confirmationNumber
+                                }
+                            }
+                        ]
+                    },
+                    "Workshop Title": {
+                        "rich_text": [
+                            {
+                                "text": {
+                                    "content": registrantDetails.workshopTitle
                                 }
                             }
                         ]

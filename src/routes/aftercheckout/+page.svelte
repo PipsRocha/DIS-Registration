@@ -28,7 +28,7 @@
   <h2>Thank you for registering for DIS 2025!</h2>
   <p> We've received your registration details.
     <br/>⚠️ <b>Important:</b> You will  receive a confirmation email for trying to register.
-    <br/>If your payment goes through, we'll send you an email with with the invoice.
+    <br/>If your payment goes through, we'll send you an email with with the receipt.
     If there’s an issue with your payment, you won’t be registered — but you can try again.
   </p>
   <p>Please keep all proof of payment.</p>
