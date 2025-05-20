@@ -72,6 +72,7 @@
 
           type: paymentType,
           confirmationNumber: confirmationNumber,
+          status: "Done"
     });
 
     try {

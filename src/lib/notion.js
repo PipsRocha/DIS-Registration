@@ -277,6 +277,15 @@ export const createRegistrant = async (registrantDetails) => {
                             }
                         ]
                     },
+                    "payment-status": {
+                        "rich_text": [
+                            {
+                                "text": {
+                                    "content": registrantDetails.status || "Waiting"
+                                }
+                            }
+                        ]
+                    },
                 }
             }),
         });
