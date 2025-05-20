@@ -22,39 +22,56 @@
     `;
 
     const paymentType = "No Payment";
+    const now = new Date();
+    const day = String(now.getDate()).padStart(2, '0');
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+    const confirmationNumber = `DCN25-${day}${month}${minutes}`;
 
     const bodyData = JSON.stringify({
-      name: checkoutData.personalInfo.name,
-      email: checkoutData.personalInfo.email,
-      acmnumber: checkoutData.personalInfo.acmnumber || "Non Member",
-      registrationType: checkoutData.selectedRegistrationType,
-      company: checkoutData.badgeInfo.company,
-      jobtitle: checkoutData.badgeInfo.jobtitle,
-      "fname-badge": checkoutData.badgeInfo["fname-badge"],
-      "lname-badge": checkoutData.badgeInfo["lname-badge"],
-      pronouns: checkoutData.badgeInfo.pronouns,
-      sneedsacm: checkoutData.badgeInfo["sneeds-acm"],
-      sneedsconference: checkoutData.badgeInfo["sneeds-conference"],
-      billingaddress: checkoutData.billingInfo.address,
-      billingname: checkoutData.billingInfo["name-billing"],
-      billingcity: checkoutData.billingInfo.city,
-      billingcountry: checkoutData.billingInfo.country,
-      phone: checkoutData.billingInfo.phone,
-      postalcode: checkoutData.billingInfo["postal-code"],
-      state: checkoutData.billingInfo.state,
-      vat: checkoutData.billingInfo.vat,
-      cartItems: checkoutData.cartItems[0]?.title,
-      cartprice: checkoutData.cartItems[0]?.price,
-      ...(checkoutData.cartItems[1] && {
-        secondCartItem: checkoutData.cartItems[1].title,
-        secondCartPrice: checkoutData.cartItems[1].price,
-      }),
-      amount: checkoutData.cartTotal,
-      "email-consent": checkoutData.preferencesInfo["email-consent"],
-      "email-opt-in": checkoutData.preferencesInfo["email-opt-in"],
-      "postal-mail-consent": checkoutData.preferencesInfo["postal-mail-consent"],
-      speaker: checkoutData.preferencesInfo.speaker,
-      type: paymentType,
+          name: checkoutData.personalInfo.name,
+          email: checkoutData.personalInfo.email,
+          ...(checkoutData.personalInfo.acmnumber
+            ? { acmnumber: checkoutData.personalInfo.acmnumber }
+            : { acmnumber: "Non Member" }),
+          registrationType: checkoutData.selectedRegistrationType,
+
+          ...(checkoutData.badgeInfo.workshopName
+            ? { workshopTitle: checkoutData.badgeInfo.workshopName}
+            : { workshopTitle: "N/A" }),
+
+          company: checkoutData.badgeInfo.company,
+          jobtitle: checkoutData.badgeInfo.jobtitle,
+          "fname-badge": checkoutData.badgeInfo["fname-badge"],
+          "lname-badge": checkoutData.badgeInfo["lname-badge"],
+          pronouns: checkoutData.badgeInfo.pronouns,
+          sneedsacm: checkoutData.badgeInfo["sneeds-acm"],
+          sneedsconference: checkoutData.badgeInfo["sneeds-conference"],
+
+          billingaddress: checkoutData.billingInfo.address,
+          billingname: checkoutData.billingInfo["name-billing"],
+          billingcity: checkoutData.billingInfo.city,
+          billingcountry: checkoutData.billingInfo.country,
+          phone: checkoutData.billingInfo.phone,
+          postalcode: checkoutData.billingInfo["postal-code"],
+          state: checkoutData.billingInfo.state,
+          vat: checkoutData.billingInfo.vat,
+
+          cartItems: checkoutData.cartItems
+            .map(item => `${item.title} (€${item.price.toFixed(2)})`)
+            .join(", "),
+
+          amount: checkoutData.cartTotal,
+
+          "email-consent": checkoutData.preferencesInfo["email-consent"],
+          "email-opt-in": checkoutData.preferencesInfo["email-opt-in"],
+          "postal-mail-consent":
+            checkoutData.preferencesInfo["postal-mail-consent"],
+          speaker: checkoutData.preferencesInfo.speaker,
+
+          type: paymentType,
+          confirmationNumber: confirmationNumber,
     });
 
     try {
