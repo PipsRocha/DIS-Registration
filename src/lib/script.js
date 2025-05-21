@@ -18,14 +18,14 @@ const SV_MAIL = ['adrian.preussner@unisg.ch', 'ariggs8@gatech.edu', 'ana.rodrigu
     'jiyounj@andrew.cmu.edu', 'jzhou625@gatech.edu',  'jz497@cornell.edu', 'liajin20@aiglon.ch', 'lais.lopes@iti.larsys.pt', 'e1356544@u.nus.edu', 'lwang809@gatech.edu',
     'sachser.luiz@gmail.com', 'mafalda.gamboa@chalmers.se', 'matilda.kalving@tuni.fi', 'baharebakhtiari@uvic.ca', 'rt499@njit.edu', 'remi.e.duhamel@gmail.com',
     'rishi.vanukuru@colorado.edu', 'nishal@u.northwestern.edu', 'shusun@ucdavis.edu', 'soraya.anvari@dal.ca', 'sjanicki3@gatech.edu', 'chan.szey@northeastern.edu',
-    'maritza.silva@gmail.com', 'tzhan009@gold.ac.uk', 't.ekhtiar@utwente.nl', 'toraja@uio.no', 'yliu3494@gatech.edu', 'yahagi@hc.ic.i.u-tokyo.ac.jp', 'yhou312@gatech.edu',
+    'maritza.silva@gmail.com', 't.ekhtiar@utwente.nl', 'toraja@uio.no', 'yliu3494@gatech.edu', 'yahagi@hc.ic.i.u-tokyo.ac.jp', 'yhou312@gatech.edu',
     'yuqiw.wang@mail.utoronto.ca', 'yizh@iu.edu', 'melody.wang@ed.ac.uk'];
 
 const TEAM_MAIL = ['nunojnunes@tecnico.ulisboa.pt', 'hugo.nicolau@tecnico.ulisboa.pt', 'marianapestana@tecnico.ulisboa.pt', 'mara.dionisio@staff.uma.pt paulo.bala@tecnico.ulisboa.pt',
     'cintia.franca@staff.uma.pt', 'augusto.esteves@tecnico.ulisboa.pt', 'amartaferreira@tecnico.ulisboa.pt', 'frederico.duarte@tecnico.ulisboa.pt', 'pedro.galvao.ferreira@tecnico.ulisboa.pt',
     'valentina.nisi@tecnico.ulisboa.pt', 'beatrizseveres@tecnico.ulisboa.pt', 'patricia.piedade@tecnico.ulisboa.pt', 'filipa.rocha@tecnico.ulisboa.pt',
     'ana.gfo.henriques@campus.ul.pt','hugalexsimon@gmail.com', 'chiara.ceccarini6@unibo.it', 'ian.r.oakley@gmail.com', 'doga@adobe.com', 'soraiafpaulo@tecnico.ulisboa.pt', 'catia.prandi@unibo.it',
-    'carine.lallemand@hotmail.fr', 'Ellen.do@colorado.edu', 'msgdionisio@gmail.com', 'imshuhao.ma@gmail.com', 'ian.r.oakley@gmail.com', 'catia.prandi@unibo.it'];
+    'carine.lallemand@hotmail.fr', 'Ellen.do@colorado.edu', 'msgdionisio@gmail.com', 'imshuhao.ma@gmail.com', 'ian.r.oakley@gmail.com', 'catia.prandi@unibo.it', 'lizette.reitsma@mau.se'];
 
 const CATEGORY_H_DISCOUNT_PERCENT = 50;
 const CATEGORY_I_DISCOUNT_PERCENT = 75;
