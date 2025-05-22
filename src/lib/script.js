@@ -21,7 +21,7 @@ const SV_MAIL = ['adrian.preussner@unisg.ch', 'ariggs8@gatech.edu', 'ana.rodrigu
     'maritza.silva@gmail.com', 't.ekhtiar@utwente.nl', 'toraja@uio.no', 'yliu3494@gatech.edu', 'yahagi@hc.ic.i.u-tokyo.ac.jp', 'yhou312@gatech.edu',
     'yuqiw.wang@mail.utoronto.ca', 'yizh@iu.edu', 'melody.wang@ed.ac.uk'];
 
-const TEAM_MAIL = ['nunojnunes@tecnico.ulisboa.pt', 'hugo.nicolau@tecnico.ulisboa.pt', 'marianapestana@tecnico.ulisboa.pt', 'mara.dionisio@staff.uma.pt paulo.bala@tecnico.ulisboa.pt',
+const TEAM_MAIL = ['nunojnunes@tecnico.ulisboa.pt', 'hugo.nicolau@tecnico.ulisboa.pt', 'marianapestana@tecnico.ulisboa.pt', 'mara.dionisio@staff.uma.pt', 'paulo.bala@tecnico.ulisboa.pt',
     'cintia.franca@staff.uma.pt', 'augusto.esteves@tecnico.ulisboa.pt', 'amartaferreira@tecnico.ulisboa.pt', 'frederico.duarte@tecnico.ulisboa.pt', 'pedro.galvao.ferreira@tecnico.ulisboa.pt',
     'valentina.nisi@tecnico.ulisboa.pt', 'beatrizseveres@tecnico.ulisboa.pt', 'patricia.piedade@tecnico.ulisboa.pt', 'filipa.rocha@tecnico.ulisboa.pt',
     'ana.gfo.henriques@campus.ul.pt','hugalexsimon@gmail.com', 'chiara.ceccarini6@unibo.it', 'ian.r.oakley@gmail.com', 'doga@adobe.com', 'soraiafpaulo@tecnico.ulisboa.pt', 'catia.prandi@unibo.it',
