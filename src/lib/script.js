@@ -17,8 +17,8 @@ const SV_MAIL = ['adrian.preussner@unisg.ch', 'ariggs8@gatech.edu', 'ana.rodrigu
     'eldylazaro@colorado.edu', 'economidoue@acm.org', 'e.m.vasconcelos.de.gouveia@tue.nl', 'tome.filipep@gmail.com', 'Hilamor@berkeley.edu', 'hji64@gatech.edu',
     'jiyounj@andrew.cmu.edu', 'jzhou625@gatech.edu',  'jz497@cornell.edu', 'liajin20@aiglon.ch', 'lais.lopes@iti.larsys.pt', 'e1356544@u.nus.edu', 'lwang809@gatech.edu',
     'sachser.luiz@gmail.com', 'mafalda.gamboa@chalmers.se', 'matilda.kalving@tuni.fi', 'baharebakhtiari@uvic.ca', 'rt499@njit.edu', 'remi.e.duhamel@gmail.com',
-    'rishi.vanukuru@colorado.edu', 'nishal@u.northwestern.edu', 'shusun@ucdavis.edu', 'soraya.anvari@dal.ca', 'sjanicki3@gatech.edu', 'chan.szey@northeastern.edu',
-    'maritza.silva@gmail.com', 't.ekhtiar@utwente.nl', 'toraja@uio.no', 'yliu3494@gatech.edu', 'yahagi@hc.ic.i.u-tokyo.ac.jp', 'yhou312@gatech.edu',
+    'rishi.vanukuru@colorado.edu', 'nishal@u.northwestern.edu', 'shusun@ucdavis.edu', 'andrea.borsato@mail.polimi.it', 'sjanicki3@gatech.edu', 'chan.szey@northeastern.edu',
+    'maritza.silva@gmail.com', 't.ekhtiar@utwente.nl', 'toraja@uio.no', 'zixin.mou@mail.polimi.it', 'yahagi@hc.ic.i.u-tokyo.ac.jp', 'yhou312@gatech.edu',
     'yuqiw.wang@mail.utoronto.ca', 'yizh@iu.edu', 'melody.wang@ed.ac.uk'];
 
 const TEAM_MAIL = ['nunojnunes@tecnico.ulisboa.pt', 'hugo.nicolau@tecnico.ulisboa.pt', 'marianapestana@tecnico.ulisboa.pt', 'mara.dionisio@staff.uma.pt', 'paulo.bala@tecnico.ulisboa.pt',
