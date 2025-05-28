@@ -1,4 +1,4 @@
-import { CATEGORY_H, CATEGORY_I, SV_MAIL, TEAM_MAIL, VALID_CODES } from "./constants";
+import { CATEGORY_H, CATEGORY_I, DISCOUNT_MAIL, SV_MAIL, TEAM_MAIL, VALID_CODES, WORKSHOP_MAIL } from "./constants";
 
 const CATEGORY_H_DISCOUNT_PERCENT = 50;
 const CATEGORY_I_DISCOUNT_PERCENT = 75;
@@ -24,7 +24,7 @@ function ready() {
     ];
 
     radios.forEach((radio) => {
-        radio.addEventListener("change", updateCartAndPrice);
+        radio.addEventListener("change", resetCart);
     });
 
 
@@ -52,11 +52,22 @@ function initializeCartEventListeners() {
     }
 
     const emailInput = document.querySelector('[name="email"]');
-    if (emailInput) {
-        emailInput.addEventListener('input', updateDiscount);
+    emailInput.addEventListener('input', () => {
+        resetCart();
+    });
+
+    const wsInput = document.querySelector('[name="workshopName"]');
+    if (wsInput) {
+        wsInput.addEventListener('input', updateDiscount);
     }
 
     document.getElementById('purchaseTicket').addEventListener('click', purchaseTicket);
+}
+
+function resetCart() {
+    const cartItems = document.getElementsByClassName('cart-items')[0];
+    cartItems.innerHTML = '';
+    updateCartTotal();
 }
 
 function updateCartAndPrice(event) {
@@ -185,6 +196,7 @@ function updateCartBasedOnRadio() {
 function removeCartItem(event) {
     var buttonClicked = event.target;
     buttonClicked.parentElement.parentElement.remove();
+
     updateCartTotal();
 }
 
@@ -199,7 +211,7 @@ function addToCartClicked(event) {
         const code = codeInput?.value.trim();
 
         const isWorkshop = VALID_CODES.includes(code);
-        console.log("name " + code +" is " + isWorkshop + " VD " + VALID_CODES);
+        //console.log("name " + code +" is " + isWorkshop + " VD " + VALID_CODES);
 
         if (!isWorkshop){
             alert("Invalid workshop code")
@@ -207,8 +219,10 @@ function addToCartClicked(event) {
         }
     }
 
+
     addItemToCart(title, price);
-    updateCartTotal();
+    updateDiscount();
+    
 }
 
 function addItemToCart(title, price) {
@@ -235,6 +249,7 @@ function addItemToCart(title, price) {
     cartRow.innerHTML = cartRowContents;
     cartItems.append(cartRow);
     cartRow.getElementsByClassName('btn-danger')[0].addEventListener('click', removeCartItem);
+    
 }
 
 async function purchaseTicket() {
@@ -319,7 +334,7 @@ async function purchaseTicket() {
 
     // Store the data in localStorage for use in checkout-page
     localStorage.setItem('checkoutData', JSON.stringify(data));
-    console.log(JSON.parse(localStorage.getItem('checkoutData')))
+    //console.log(JSON.parse(localStorage.getItem('checkoutData')))
     
     // Redirect to the checkout page
     if (data.cartTotal == 0) {
@@ -346,14 +361,14 @@ function updateCartTotal() {
 
         total += price;
 
-
         cartItems.push({
             title: title,
             price: price
         });
     }
 
-    total = Math.round(total * 100) / 100;
+    //total = Math.round(total * 100) / 100;
+    total = Math.max(0, Math.round(total * 100) / 100);
     
     document.getElementsByClassName('cart-total-price')[0].innerText = '€ ' + total.toFixed(2);
 
@@ -365,7 +380,7 @@ function updateCartTotal() {
 }
 
 async function isMember(acmNumber) {
-    console.log("ACM Number:", acmNumber);
+    //console.log("ACM Number:", acmNumber);
 
     if (!acmNumber) {
         console.error("ACM Number is missing.");
@@ -380,7 +395,7 @@ async function isMember(acmNumber) {
         }
 
         const data = await response.json();
-        console.log("API Response:", data);
+        //console.log("API Response:", data);
 
         if (data.CLASS == "non_mbr") {
             alert("Not an active ACM member.");
@@ -393,7 +408,7 @@ async function isMember(acmNumber) {
             return false;
         }
 
-        console.log("Selected Registration Type:", selectedRegistrationType);
+        //console.log("Selected Registration Type:", selectedRegistrationType);
         if (selectedRegistrationType === "acm-member") {
             return ["prof_mbr", "sig_mbr"].includes(data.CLASS);
         } else if (selectedRegistrationType === "student-acm-member"){
@@ -409,35 +424,63 @@ async function isMember(acmNumber) {
 
 function updateDiscount() {
     const billingCountry = document.querySelector('[name="country"]')?.value?.trim();
-    const reg_mail =  document.querySelector('[name="email"]')?.value?.trim();
+    const reg_mail = document.querySelector('[name="email"]')?.value?.trim().toLowerCase();
 
     const isDiscountedSV = SV_MAIL.includes(reg_mail);
     const isDiscountedTeam = TEAM_MAIL.includes(reg_mail);
+    const isDiscountArt = DISCOUNT_MAIL.includes(reg_mail);
+    const isDiscountWS = WORKSHOP_MAIL.includes(reg_mail);
 
-    const isDiscountedH = (!isDiscountedSV && !isDiscountedTeam) && CATEGORY_H.includes(billingCountry);
-    const isDiscountedI = (!isDiscountedSV && !isDiscountedTeam) && CATEGORY_I.includes(billingCountry);
+    const isDiscountedH = (!isDiscountedSV && !isDiscountedTeam && !isDiscountArt) && CATEGORY_H.includes(billingCountry);
+    const isDiscountedI = (!isDiscountedSV && !isDiscountedTeam && !isDiscountArt) && CATEGORY_I.includes(billingCountry);
 
+    const cartItems = document.getElementsByClassName('cart-items')[0];
 
-    // Remove any existing discount rows
-    const cartRows = document.querySelectorAll('.cart-row');
-    cartRows.forEach(row => {
-        if (row.dataset.type === 'discount') {
-            row.remove();
-        }
+    // Remove orphaned discount rows
+    document.querySelectorAll('.cart-row[data-type="discount"]').forEach(discountRow => {
+        const relatedItem = discountRow.dataset.relatedItem;
+        const hasItem = [...cartItems.getElementsByClassName('cart-item-title')].some(el =>
+            el.innerText.toLowerCase().includes(relatedItem)
+        );
+        if (!hasItem) discountRow.remove();
     });
 
-    if (!isDiscountedH && !isDiscountedI && !isDiscountedSV && !isDiscountedTeam) {
+    // Apply workshop discount if valid and workshop exists
+    const hasWorkshop = [...cartItems.getElementsByClassName('cart-item-title')]
+        .some(el => el.innerText.toLowerCase().includes('workshop'));
+
+    if (isDiscountWS && hasWorkshop && !document.querySelector('[data-related-item="workshop"]')) {
+        const priceWorkshop = document.getElementById("price-workshop");
+        const discountAmount = parseFloat(priceWorkshop.textContent.replace('€ ', '')) || 0;
+
+        const discountRow = document.createElement('tr');
+        discountRow.classList.add('cart-row');
+        discountRow.dataset.type = 'discount';
+        discountRow.dataset.relatedItem = 'workshop';
+        discountRow.innerHTML = `
+            <td class="cart-item cart-column">
+                <span class="cart-item-title">Complementary Workshop</span>                                    
+            </td>
+            <td class="cart-item cart-column">
+                <span class="cart-price cart-column">€ -${discountAmount.toFixed(2)}</span>
+            </td>
+            <td class="cart-item cart-column"></td>
+        `;
+        cartItems.append(discountRow);
+    }
+
+    // Apply registration discount (mutually exclusive)
+    const regRow = [...cartItems.getElementsByClassName('cart-row')].find(row =>
+        row.querySelector('.cart-item-title')?.innerText.toLowerCase().includes('conference')
+    );
+
+    if (!regRow) {
         updateCartTotal();
         return;
     }
 
-    const cartItems = document.getElementsByClassName('cart-items')[0];
-    const regRow = [...cartItems.getElementsByClassName('cart-row')].find(row => {
-        const title = row.querySelector('.cart-item-title')?.innerText || '';
-        return title.toLowerCase().includes('conference');
-    });
-
-    if (!regRow) {
+    const alreadyHasConfDiscount = !!document.querySelector('[data-related-item="conference"]');
+    if (alreadyHasConfDiscount) {
         updateCartTotal();
         return;
     }
@@ -445,36 +488,42 @@ function updateDiscount() {
     const priceElement = regRow.querySelector('.cart-price');
     const originalPrice = parseFloat(priceElement.innerText.replace('€ ', ''));
 
-    let discountAmount;
-    let label;
+    let discountAmount = 0;
+    let label = '';
 
     if (isDiscountedH) {
-        discountAmount = Math.round((originalPrice * CATEGORY_H_DISCOUNT_PERCENT / 100) * 100) / 100;
+        discountAmount = originalPrice * CATEGORY_H_DISCOUNT_PERCENT / 100;
         label = "Category H Discount";
     } else if (isDiscountedI) {
-        discountAmount = Math.round((originalPrice * CATEGORY_I_DISCOUNT_PERCENT / 100) * 100) / 100;
+        discountAmount = originalPrice * CATEGORY_I_DISCOUNT_PERCENT / 100;
         label = "Category I Discount";
     } else if (isDiscountedSV) {
-        discountAmount = Math.round((originalPrice * CATEGORY_SV / 100) * 100) / 100;
+        discountAmount = originalPrice * CATEGORY_SV / 100;
         label = "SV Student Discount";
     } else if (isDiscountedTeam) {
-        discountAmount = Math.round((originalPrice * CATEGORY_TEAM / 100) * 100) / 100;
+        discountAmount = originalPrice * CATEGORY_TEAM / 100;
         label = "Complementary Registration";
+    } else if (isDiscountArt) {
+        discountAmount = 350;
+        label = "Discounted Registration";
     }
 
-    const discountRow = document.createElement('tr');
-    discountRow.classList.add('cart-row');
-    discountRow.dataset.type = 'discount';
-    discountRow.innerHTML = `
-        <td class="cart-item cart-column">
-            <span class="cart-item-title">${label}</span>                                    
-        </td>
-        <td class="cart-item cart-column">
-            <span class="cart-price cart-column">€ -${discountAmount.toFixed(2)}</span>
-        </td>
-        <td class="cart-item cart-column"></td>
-    `;
+    if (discountAmount > 0) {
+        const discountRow = document.createElement('tr');
+        discountRow.classList.add('cart-row');
+        discountRow.dataset.type = 'discount';
+        discountRow.dataset.relatedItem = 'conference';
+        discountRow.innerHTML = `
+            <td class="cart-item cart-column">
+                <span class="cart-item-title">${label}</span>                                    
+            </td>
+            <td class="cart-item cart-column">
+                <span class="cart-price cart-column">€ -${discountAmount.toFixed(2)}</span>
+            </td>
+            <td class="cart-item cart-column"></td>
+        `;
+        cartItems.append(discountRow);
+    }
 
-    cartItems.append(discountRow);
     updateCartTotal();
 }
