@@ -221,12 +221,12 @@
 <div class="container" style="padding-top: 5vh;">
   <form id="badgeInfo">
     <label for="workshopName">
-      Workshop Title</label>
+      Workshop Code</label>
     <input
       type="text"
       id="workshopName"
       name="workshopName"
-      placeholder="Title(s)"
+      placeholder="Code"
       class="form-control"
     />
     <p>
