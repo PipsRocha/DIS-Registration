@@ -140,6 +140,7 @@
                         
                         <p><strong>IBAN: </strong> ${result.easypay.iban}<br>
                         <strong>Beneficiary: </strong> EasyPay <br>
+                        <strong>SWIFT: </strong> BCOMPTPL <br>
                         <strong>Value: €</strong> ${checkoutData.cartTotal}<br>
                         Payment Status: ${result.easypay.status}</p>
                         
