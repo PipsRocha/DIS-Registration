@@ -51,12 +51,23 @@ export async function POST({ request, cookies }) {
             console.log("I am in");
             if (response.method.type === 'mb') {
                 // Handle Multibanco response
-                const { status, entity, reference } = response.method;
-                responseBody = { method: 'mb', status, entity, reference };
+                //nst { status, entity, reference } = response.method;
+                responseBody = {
+                    method: {
+                    type: 'mb',
+                    status: response.method.status,
+                    entity: response.method.entity,
+                    reference: response.method.reference
+                    }
+                };
             } else if (response.method.type === 'cc') {
                 // Handle Credit Card response
                 const { url, status } = response.method;
                 responseBody = { method: 'cc', status, url };
+            } if (response.method.type.toLowerCase() === 'vi') {
+                // Handle IBAN response
+                const { status, iban } = response.method;
+                responseBody = { method: 'vi', status, iban };
             } else {
                 responseBody = response;
             }

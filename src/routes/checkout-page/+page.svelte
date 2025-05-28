@@ -23,24 +23,27 @@
                 <p><strong>Total Amount:</strong> €${checkoutData.cartTotal.toFixed(2)}</p>
                 <select id= "paymentType" name="paymentType" required>
                 <option value="cc">Credit Card</option>
-                  <option value="mb">Multibanco (Portuguese accounts)</option>
+                <option value="mb">Multibanco (Portuguese accounts)</option>
+                <option value="vi">Bank Transfer (IBAN)</option>
                   
                 </select>
           </div>
           <div class="btn-purchase" style="padding-top:2vh;">
             <button type="button"  class="btn btn-dark btn-purchase " id="payTicket">Pay</button>
+
           </div>
         <p style="color:#BEBEBE"> Please verify that funds have not been captured before trying to proceed with another payment. <br>
   Please take into consideration that the invoice will take at least 10 days to be sent to you. </p>
         </div>`;
 
-    document
-      .getElementById("payTicket")
-      .addEventListener("click", () => payTicket(checkoutData));
+    document.getElementById("payTicket").addEventListener("click", async () => payTicket(checkoutData));
   });
 
   // Fetch EasyPay manifest
   async function payTicket(checkoutData) {
+    const payButton = document.getElementById("payTicket");
+    payButton.disabled = true;
+    payButton.innerText = "...";
     // Get selected payment type
     const paymentType = document.getElementById("paymentType").value;
 
@@ -102,17 +105,46 @@
         document.getElementById("easypay-response").innerText =
           `Payment Failed: ${result.easypay.error}`;
       } else {
-        if (result.easypay.method === "mb") {
+      if (result.easypay.method.type === "mb") {
+        const { entity, reference, status } = result.easypay.method;
+        document.getElementById("easypay-response").innerHTML = `
+          <p><strong>Please make the payment with the following details</strong></p>
+          <p><strong>Entity:</strong> ${entity}<br>
+          <strong>Reference:</strong> ${reference}<br>
+          <strong>Value:</strong> €${checkoutData.cartTotal}<br>
+          Payment Status: ${status}</p>
+
+          <p>Once you've completed the payment, click the button below to proceed.
+          <br>Please keep the proof of payment proof.</p>
+          <button id="aftercheckout-btn" class="btn btn-dark btn-purchase">Proceed</button>
+        `;
+
+          // Add a click event listener to the "Proceed to After Checkout" button
+          document
+            .getElementById("aftercheckout-btn")
+            .addEventListener("click", () => {
+              window.location.href = "/aftercheckout";
+            });
+        } else if (result.easypay.method.type === "cc") {
+            const { url } = result.easypay.method;
+            if (url) {
+              window.location.href = url;
+            } else {
+              document.getElementById("easypay-response").innerText =
+                "Something went wrong. No payment link was returned.";
+            }
+          
+        } else if (result.easypay?.method === "vi") {
           document.getElementById("easypay-response").innerHTML = `
                       <p><strong>Please make the payment with the following details</strong></p>
                         
-                        <p><strong>Entity:</strong> ${result.easypay.entity}</p>
-                        <p><strong>Reference:</strong> ${result.easypay.reference}<br>
-                        <strong>Value:</strong> ${checkoutData.cartTotal}<br>
-                          Payment Status: ${result.easypay.status}</p>
+                        <p><strong>IBAN: </strong> ${result.easypay.iban}<br>
+                        <strong>Beneficiary: </strong> EasyPay <br>
+                        <strong>Value: €</strong> ${checkoutData.cartTotal}<br>
+                        Payment Status: ${result.easypay.status}</p>
                         
-                        <p>Once you've completed the payment, click the button below to proceed.</p>
-                        <p>Please keep the payment proof.</p>
+                        <p>Once you've completed the payment, click the button below to proceed.<br>
+                        Please keep the proof of payment.</p>
                         <button id="aftercheckout-btn" class="btn btn-dark btn-purchase">Proceed</button>
                     `;
 
@@ -122,22 +154,8 @@
             .addEventListener("click", () => {
               window.location.href = "/aftercheckout";
             });
-        } else if (result.easypay.method === "cc") {
-          // Open the payment URL in a pop-up
-          window.location.href = result.easypay.url;
+        }
 
-          // Check if the pop-up was blocked
-          
-          // Redirect to 'aftercheckoutpage' after 1 minute
-        } //else if (result.method === "vi") {
-          //document.getElementById("easypay-response").innerHTML = `
-                      //  <p>Please make a bank transfer to the following IBAN:</p>  <p><strong>IBAN:</strong> ${result.iban}</p><p>Once you've completed the transfer, click the button below to proceed.</p> <button id="aftercheckout-btn" class="btn btn-dark btn-purchase">Proceed to After Checkout</button> `;
-
-          // Add a click event listener to the "Proceed to After Checkout" button
-          //document
-           // .getElementById("aftercheckout-btn")
-           // .addEventListener("click", () => {
-           //   window.location.href = "/aftercheckout";            });        }
       }
     } catch (error) {
       document.getElementById("easypay-response").innerText =
