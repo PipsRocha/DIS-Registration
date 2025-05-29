@@ -24,7 +24,10 @@ function ready() {
     ];
 
     radios.forEach((radio) => {
-        radio.addEventListener("change", resetCart);
+        radio.addEventListener("change", ()=> {
+            resetCart();
+            updateCartAndPrice();
+        });
     });
 
 
