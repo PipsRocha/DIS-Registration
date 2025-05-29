@@ -330,6 +330,7 @@ async function purchaseTicket() {
     data.selectedRegistrationType = selectedRadio;
 
     const cartData = updateCartTotal();
+    console.log(cartData);
     if (cartData) {
         data.cartItems = cartData.items;
         data.cartTotal = cartData.total;
@@ -340,7 +341,10 @@ async function purchaseTicket() {
     //console.log(JSON.parse(localStorage.getItem('checkoutData')))
     
     // Redirect to the checkout page
-    if (data.cartTotal == 0) {
+    if (!cartData || cartData.items.length === 0) {
+        alert("Your cart is empty. Please add a registration or workshop.");
+        return;
+    } else if (data.cartTotal == 0 && cartData.items.length != 0) {
         window.location.href = '/complementary-checkout'
     } else {
         window.location.href = '/checkout-page';
