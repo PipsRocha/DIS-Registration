@@ -165,7 +165,7 @@
         <div class="card h-100">
           <div class="card-body">
             <h5 class="card-title shop-item-title">
-              In-Person Full Conference
+              In-Person Conference
             </h5>
             <p class="card-text shop-item-price" id="price-full">€ 750.00</p>
             <button
