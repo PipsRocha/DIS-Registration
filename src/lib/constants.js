@@ -21,7 +21,7 @@ export const TEAM_MAIL = ['nunojnunes@tecnico.ulisboa.pt', 'hugo.nicolau@tecnico
     'cintia.franca@staff.uma.pt', 'augusto.esteves@tecnico.ulisboa.pt', 'amartaferreira@tecnico.ulisboa.pt', 'frederico.duarte@tecnico.ulisboa.pt', 'pedro.galvao.ferreira@tecnico.ulisboa.pt',
     'valentina.nisi@tecnico.ulisboa.pt', 'beatrizseveres@tecnico.ulisboa.pt', 'patricia.piedade@tecnico.ulisboa.pt', 'filipa.rocha@tecnico.ulisboa.pt',
     'ana.gfo.henriques@campus.ul.pt','hugalexsimon@gmail.com', 'chiara.ceccarini6@unibo.it', 'ian.r.oakley@gmail.com', 'doga@adobe.com', 'soraiafpaulo@tecnico.ulisboa.pt', 'catia.prandi@unibo.it',
-    'carine.lallemand@hotmail.fr', 'msgdionisio@gmail.com', 'imshuhao.ma@gmail.com', 'ian.r.oakley@gmail.com', 'catia.prandi@unibo.it', 'lizette.reitsma@mau.se', 'elise.vandenHoven@uts.edu.au', 'ellen.do@colorado.edu'];
+    'carine.lallemand@hotmail.fr', 'msgdionisio@gmail.com', 'imshuhao.ma@gmail.com', 'ian.r.oakley@gmail.com', 'catia.prandi@unibo.it', 'lizette.reitsma@mau.se', 'elise.vandenhoven@uts.edu.au', 'ellen.do@colorado.edu'];
 
 export const DISCOUNT_MAIL = ['terhim@gmail.com', 'marina.otero@gmail.com', 'xpux@pratt.edu', '1424996982@qq.com', 'k.zolotovsky@northeastern.edu', 'ja@jamieallen.com', 'esteban.agosinotero@stonybrook.edu', 'a.mohindra.design@gmail.com'];
 

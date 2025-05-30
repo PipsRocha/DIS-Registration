@@ -217,7 +217,7 @@ function addToCartClicked(event) {
         //console.log("name " + code +" is " + isWorkshop + " VD " + VALID_CODES);
 
         if (!isWorkshop){
-            alert("Invalid workshop code")
+            alert("Invalid workshop code");
             return;
         }
     }
@@ -511,8 +511,22 @@ function updateDiscount() {
         discountAmount = originalPrice * CATEGORY_TEAM / 100;
         label = "Complementary Registration";
     } else if (isDiscountArt) {
-        discountAmount = 350;
-        label = "Discounted Registration";
+        const selectedRadio = document.querySelector('input[name="registrationType"]:checked');
+
+        if (!selectedRadio) {
+            console.error("No registration type selected.");
+            return;
+        }
+
+        const selectedValue = selectedRadio.value;
+
+        if (selectedValue === "non-acm-member" || selectedValue === "acm-member"){
+            discountAmount = 350;
+            label = "Discounted Registration";
+        } else {
+            alert("Check selected registration type");
+            return;
+        } 
     }
 
     if (discountAmount > 0) {
