@@ -521,8 +521,8 @@ function updateDiscount() {
         const selectedValue = selectedRadio.value;
 
         if (selectedValue === "non-acm-member" || selectedValue === "acm-member"){
-            discountAmount = 350;
-            label = "Discounted Registration";
+            discountAmount = originalPrice * CATEGORY_TEAM / 100;
+            label = "400€ Artist Complementary Registration";
         } else {
             alert("Check selected registration type");
             return;
