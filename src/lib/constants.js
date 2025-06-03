@@ -22,7 +22,7 @@ export const TEAM_MAIL = ['nunojnunes@tecnico.ulisboa.pt', 'hugo.nicolau@tecnico
     'ana.gfo.henriques@campus.ul.pt','hugalexsimon@gmail.com', 'chiara.ceccarini6@unibo.it', 'ian.r.oakley@gmail.com', 'doga@adobe.com', 'soraiafpaulo@tecnico.ulisboa.pt', 'catia.prandi@unibo.it',
     'carine.lallemand@hotmail.fr', 'msgdionisio@gmail.com', 'imshuhao.ma@gmail.com', 'ian.r.oakley@gmail.com', 'catia.prandi@unibo.it', 'lizette.reitsma@mau.se', 'elise.vandenhoven@uts.edu.au', 'ellen.do@colorado.edu',];
 
-export const DISCOUNT_MAIL = [];
+export const DISCOUNT_MAIL = ['jamie.allen@fhnw.ch', 'marina.otero@gmail.com','xpux@pratt.edu','1424996982@qq.com', 'k.zolotovsky@northeastern.edu', 'esteban.agosinotero@stonybrook.edu', 'avantikavelho1@gmail.com'];
 
 export const WORKSHOP_MAIL = ['beatrizseveres@tecnico.ulisboa.pt','catia.prandi@unibo.it','rosan.chow@oth-regensburg.de','sjang310@gatech.edu','b.l.lee@exeter.ac.uk','david.goedicke@uni-due.de',
     'maria.v.zeller@inesctec.pt','wiva@itu.dk','s.ppali@cyens.org.cy','beatrice.vincenzi@bcu.ac.uk','lnjchonolulu@gmail.com','daniel.snow@ucdconnect.ie','maria.montoyavega@monash.edu',

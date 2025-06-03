@@ -520,9 +520,9 @@ function updateDiscount() {
 
         const selectedValue = selectedRadio.value;
 
-        if (selectedValue === "non-acm-member" || selectedValue === "acm-member"){
+        if (selectedValue != "non-acm-member" && selectedValue != "acm-member") {
             discountAmount = originalPrice * CATEGORY_TEAM / 100;
-            label = "400€ Artist Complementary Registration";
+            label = "Artist Discount Registration 400€";
         } else {
             alert("Check selected registration type");
             return;
