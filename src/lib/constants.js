@@ -28,4 +28,4 @@ export const WORKSHOP_MAIL = ['beatrizseveres@tecnico.ulisboa.pt','catia.prandi@
     'maria.v.zeller@inesctec.pt','wiva@itu.dk','s.ppali@cyens.org.cy','beatrice.vincenzi@bcu.ac.uk','lnjchonolulu@gmail.com','daniel.snow@ucdconnect.ie','maria.montoyavega@monash.edu',
     'lauren_thu@sfu.ca','hitesh.dhiman@th-owl.de', 'eileen.wemmer@th-owl.de','j.avila@nottingham.ac.uk', 'mark.blythe@northumbria.ac.uk'];
 
-export const VALID_CODES = ['WKVYL1260','WHLYC3715','W9CRA4228','W8OF14255','WEERV5495','WOPZT5994','WAFVT6665','WH2UB6952','WFJMV8727','WAUPG9005','W2XWG9059','WCGJ69650','W6JXI9731','WUMJU9838','WAR9O3859','WJGUU1562','W836W1877'];
+export const VALID_CODES = ['WKVYL1260','WHLYC3715','W9CRA4228','W8OF14255','WEERV5495','WOPZT5994','WAFVT6665','WH2UB6952','WFJMV8727','W3','W2XWG9059','WCGJ69650','W6JXI9731','WUMJU9838','WAR9O3859','WJGUU1562','W836W1877'];
