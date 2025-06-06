@@ -1,4 +1,4 @@
-import { CATEGORY_H, CATEGORY_I, DISCOUNT_MAIL, SV_MAIL, TEAM_MAIL, VALID_CODES, WORKSHOP_MAIL } from "./constants";
+import { CATEGORY_H, CATEGORY_I, DISCOUNT_MAIL, SV_MAIL, TEAM_MAIL, VALID_CODES, WORKSHOP_MAIL, EB_MAIL} from "./constants";
 
 const CATEGORY_H_DISCOUNT_PERCENT = 50;
 const CATEGORY_I_DISCOUNT_PERCENT = 75;
@@ -443,9 +443,10 @@ function updateDiscount() {
     const isDiscountedTeam = TEAM_MAIL.includes(reg_mail);
     const isDiscountArt = DISCOUNT_MAIL.includes(reg_mail);
     const isDiscountWS = WORKSHOP_MAIL.includes(reg_mail);
+    const isDiscountEB = EB_MAIL.includes(reg_mail);
 
-    const isDiscountedH = (!isDiscountedSV && !isDiscountedTeam && !isDiscountArt) && CATEGORY_H.includes(billingCountry);
-    const isDiscountedI = (!isDiscountedSV && !isDiscountedTeam && !isDiscountArt) && CATEGORY_I.includes(billingCountry);
+    const isDiscountedH = (!isDiscountedSV && !isDiscountedTeam && !isDiscountArt && isDiscountEB) && CATEGORY_H.includes(billingCountry);
+    const isDiscountedI = (!isDiscountedSV && !isDiscountedTeam && !isDiscountArt && isDiscountEB) && CATEGORY_I.includes(billingCountry);
 
     const cartItems = document.getElementsByClassName('cart-items')[0];
 
@@ -516,7 +517,11 @@ function updateDiscount() {
     } else if (isDiscountedTeam) {
         discountAmount = originalPrice * CATEGORY_TEAM / 100;
         label = "Complementary Registration";
-    } else if (isDiscountArt) {
+    } else if (isDiscountEB) {
+        discountAmount = 100
+        label = "Early Bird Registration";
+    } 
+    else if (isDiscountArt) {
         const selectedRadio = document.querySelector('input[name="registrationType"]:checked');
 
         if (!selectedRadio) {
