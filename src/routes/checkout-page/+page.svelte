@@ -33,7 +33,7 @@
 
           </div>
         <p style="color:#BEBEBE"> Please verify that funds have not been captured before trying to proceed with another payment. <br>
-  Please take into consideration that the invoice will take at least 10 days to be sent to you. </p>
+  Please take into consideration that the receipt will take at least 10 days to be sent to you. </p>
         </div>`;
 
     document.getElementById("payTicket").addEventListener("click", async () => payTicket(checkoutData));
