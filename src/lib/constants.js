@@ -14,7 +14,7 @@ export const CATEGORY_I = ['Afghanistan', 'Algeria', 'Angola', 'Bangladesh', 'Be
     'Timor-Leste', 'Togo', 'Tunisia', 'Uganda', 'Ukraine', 'Uzbekistan', 'Vanuatu', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'];
 
 export const SV_MAIL = ['ana.rodrigues.iti@gmail.com', 'eldylazaro@colorado.edu', 'economidoue@acm.org', 'e.m.vasconcelos.de.gouveia@tue.nl', 'hji64@gatech.edu', 'jiyounj@andrew.cmu.edu', 'jzhou625@gatech.edu', 'e1356544@u.nus.edu', 'baharebakhtiari@uvic.ca', 'nishal@u.northwestern.edu', 'soraya.anvari@dal.ca',
-    'maritza.silva@gmail.com', 'yliu3494@gatech.edu','pengyuzhu@u.nus.edu', 'andrea.borsato@mail.polimi.it', 'mpark2@andrew.cmu.edu', 'lisaegede96@gmail.com', 'gongqi0818@gmail.com'];
+    'maritza.silva@gmail.com', 'yliu3494@gatech.edu','pengyuzhu@u.nus.edu', 'andrea.borsato@mail.polimi.it', 'mpark2@andrew.cmu.edu', 'lisaegede96@gmail.com', 'gongqi0818@gmail.com', 'maya.lachaidelbaum@gmail.com'];
 
 export const TEAM_MAIL = ['nunojnunes@tecnico.ulisboa.pt', 'valentina.nisi@tecnico.ulisboa.pt','sebastian.prost@citystgeorges.ac.uk','ianoakley@kaist.ac.kr','marianapestana@tecnico.ulisboa.pt',
                           'hugo.nicolau@tecnico.ulisboa.pt','nmc@fct.unl.pt','acoelho@fe.up.pt','frederico.duarte@tecnico.ulisboa.pt','pedro.galvao.ferreira@tecnico.ulisboa.pt','cwieczor3@gatech.edu',
