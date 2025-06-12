@@ -445,8 +445,8 @@ function updateDiscount() {
     const isDiscountWS = WORKSHOP_MAIL.includes(reg_mail);
     const isDiscountEB = EB_MAIL.includes(reg_mail);
 
-    const isDiscountedH = (!isDiscountedSV && !isDiscountedTeam && !isDiscountArt && isDiscountEB) && CATEGORY_H.includes(billingCountry);
-    const isDiscountedI = (!isDiscountedSV && !isDiscountedTeam && !isDiscountArt && isDiscountEB) && CATEGORY_I.includes(billingCountry);
+    const isDiscountedH = (!isDiscountedSV && !isDiscountedTeam && !isDiscountArt && !isDiscountEB) && CATEGORY_H.includes(billingCountry);
+    const isDiscountedI = (!isDiscountedSV && !isDiscountedTeam && !isDiscountArt && !isDiscountEB) && CATEGORY_I.includes(billingCountry);
 
     const cartItems = document.getElementsByClassName('cart-items')[0];
 
