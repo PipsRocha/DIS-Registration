@@ -482,7 +482,27 @@ function updateDiscount() {
             <td class="cart-item cart-column"></td>
         `;
         cartItems.append(discountRow);
-    }
+    } else if (isDiscountEBW && hasWorkshop && !document.querySelector('[data-related-item="workshop"]')) {
+        const priceWorkshop = document.getElementById("price-workshop");
+
+        let discountAmount = 30
+        let label = "Early Bird Registration";
+
+        const discountRow = document.createElement('tr');
+        discountRow.classList.add('cart-row');
+        discountRow.dataset.type = 'discount';
+        discountRow.dataset.relatedItem = 'workshop';
+        discountRow.innerHTML = `
+            <td class="cart-item cart-column">
+                <span class="cart-item-title">${label}</span>                                    
+            </td>
+            <td class="cart-item cart-column">
+                <span class="cart-price cart-column">€ -${discountAmount.toFixed(2)}</span>
+            </td>
+            <td class="cart-item cart-column"></td>
+        `;
+        cartItems.append(discountRow);
+    } 
 
     // Apply registration discount (mutually exclusive)
     const regRow = [...cartItems.getElementsByClassName('cart-row')].find(row =>
@@ -521,10 +541,7 @@ function updateDiscount() {
     } else if (isDiscountEB) {
         discountAmount = 50
         label = "Early Bird Registration";
-    } else if (isDiscountEBW) {
-        discountAmount = 30
-        label = "Early Bird Registration";
-    } 
+    }
     else if (isDiscountArt) {
         const selectedRadio = document.querySelector('input[name="registrationType"]:checked');
 
