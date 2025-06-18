@@ -24,12 +24,11 @@ export const TEAM_MAIL = ['nunojnunes@tecnico.ulisboa.pt', 'valentina.nisi@tecni
 
 export const DISCOUNT_MAIL = ['jamie.allen@fhnw.ch', 'marina.otero@gmail.com','xpux@pratt.edu','1424996982@qq.com', 'k.zolotovsky@northeastern.edu', 'esteban.agosinotero@stonybrook.edu', 'avantikavelho1@gmail.com'];
 
-export const WORKSHOP_MAIL = ['beatrizseveres@tecnico.ulisboa.pt','catia.prandi@unibo.it','rosan.chow@oth-regensburg.de','sjang310@gatech.edu','b.l.lee@exeter.ac.uk','david.goedicke@uni-due.de',
-    'maria.v.zeller@inesctec.pt','wiva@itu.dk','s.ppali@cyens.org.cy','lnjchonolulu@gmail.com','daniel.snow@ucdconnect.ie','maria.montoyavega@monash.edu',
-    'lauren_thu@sfu.ca','hitesh.dhiman@th-owl.de', 'eileen.wemmer@th-owl.de','j.avila@nottingham.ac.uk', 'mark.blythe@northumbria.ac.uk'];
+export const WORKSHOP_MAIL = ['b.l.lee@exeter.ac.uk','david.goedicke@uni-due.de', 'maria.v.zeller@inesctec.pt','s.ppali@cyens.org.cy','daniel.snow@ucdconnect.ie',
+     'j.avila@nottingham.ac.uk', 'mark.blythe@northumbria.ac.uk'];
 
 export const VALID_CODES = ['WKVYL1260','WHLYC3715','W9CRA4228','W8OF14255','WEERV5495','WOPZT5994','WAFVT6665','WH2UB6952','WFJMV8727','W3','W2XWG9059','WCGJ69650','W6JXI9731','WUMJU9838','WAR9O3859','WJGUU1562','W836W1877'];
 
-export const EB_MAIL=['pan.meng@northeastern.edu'];
+export const EB_MAIL=['pan.meng@northeastern.edu', 'kwangyoung@kaist.ac.kr'];
 
 export const EBW_MAIL=['beatrice.vincenzi@bcu.ac.uk'];
