@@ -28,6 +28,6 @@ export const WORKSHOP_MAIL = ['b.l.lee@exeter.ac.uk','david.goedicke@uni-due.de'
 
 export const VALID_CODES = ['WKVYL1260','WHLYC3715','W9CRA4228','W8OF14255','WEERV5495','WOPZT5994','WAFVT6665','WH2UB6952','WFJMV8727','W3','W2XWG9059','WCGJ69650','W6JXI9731','WUMJU9838','WAR9O3859','WJGUU1562','W836W1877'];
 
-export const EB_MAIL=['pan.meng@northeastern.edu', 'kwangyoung@kaist.ac.kr'];
+export const EB_MAIL=['pan.meng@northeastern.edu', 'kwangyoung@kaist.ac.kr', 'frochaix@gsu.edu'];
 
 export const EBW_MAIL=[];
