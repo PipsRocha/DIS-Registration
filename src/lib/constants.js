@@ -19,7 +19,7 @@ export const TEAM_MAIL = ['sebastian.prost@citystgeorges.ac.uk', 'marianapestana
                           'nmc@fct.unl.pt','acoelho@fe.up.pt','frederico.duarte@tecnico.ulisboa.pt','pedro.galvao.ferreira@tecnico.ulisboa.pt','cwieczor3@gatech.edu',
                           'gel@nus.edu.sg','filipa.rocha@tecnico.ulisboa.pt','salaimo@uoregon.edu', 'merrie@google.com', 'andre@dafne.pt', 'imshuhao.ma@gmail.com','paulo.bala@tecnico.ulisboa.pt',
                           'mara.dionisio@staff.uma.pt', 'cintia.franca@staff.uma.pt', 
-                          'filipa.rocha@tecnico.ulisboa.pt','hugalexsimon@gmail.com', 'chiara.ceccarini6@unibo.it', 'manuel.biscoito@funchal.pt'];
+                          'filipa.rocha@tecnico.ulisboa.pt','hugalexsimon@gmail.com', 'chiara.ceccarini6@unibo.it', 'manuel.biscoito@funchal.pt', 'echeon@syr.edu'];
 
 export const DISCOUNT_MAIL = ['jamie.allen@fhnw.ch', 'marina.otero@gmail.com','xpux@pratt.edu','1424996982@qq.com', 'k.zolotovsky@northeastern.edu', 'esteban.agosinotero@stonybrook.edu', 'avantikavelho1@gmail.com'];
 
