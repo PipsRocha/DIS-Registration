@@ -30,4 +30,4 @@ export const VALID_CODES = ['WKVYL1260','WHLYC3715','W9CRA4228','W8OF14255','WEE
 
 export const EB_MAIL=['pan.meng@northeastern.edu', 'kwangyoung@kaist.ac.kr', 'frochaix@gsu.edu'];
 
-export const EBW_MAIL=[];
+export const EBW_MAIL=['cristina.gena@unito.it'];
