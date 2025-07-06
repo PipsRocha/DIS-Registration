@@ -539,7 +539,7 @@ function updateDiscount() {
         discountAmount = originalPrice * CATEGORY_TEAM / 100;
         label = "Complementary Registration";
     } else if (isDiscountEB) {
-        discountAmount = 50
+        discountAmount = 250
         label = "Early Bird Registration";
     }
     else if (isDiscountArt) {

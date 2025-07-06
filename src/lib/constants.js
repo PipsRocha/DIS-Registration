@@ -13,16 +13,15 @@ export const CATEGORY_I = ['Afghanistan', 'Algeria', 'Angola', 'Bangladesh', 'Be
     'Samoa', 'Sao Tome and Principe', 'Senegal', 'Sierra Leone', 'Sri Lanka', 'Solomon Islands', 'Somalia', 'South Sudan', 'Sudan', 'Syria', 'Tadzhikistan', 'Tanzania',
     'Timor-Leste', 'Togo', 'Tunisia', 'Uganda', 'Ukraine', 'Uzbekistan', 'Vanuatu', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'];
 
-export const SV_MAIL = ['annajiskrova0@gmail.com'];
+export const SV_MAIL = [];
 
 export const TEAM_MAIL = [];
 
-export const DISCOUNT_MAIL = ['jamie.allen@fhnw.ch', 'marina.otero@gmail.com','xpux@pratt.edu','1424996982@qq.com', 'k.zolotovsky@northeastern.edu', 'esteban.agosinotero@stonybrook.edu', 'avantikavelho1@gmail.com'];
+export const DISCOUNT_MAIL = [];
 
-export const WORKSHOP_MAIL = ['b.l.lee@exeter.ac.uk','david.goedicke@uni-due.de','daniel.snow@ucdconnect.ie',
-     'j.avila@nottingham.ac.uk', 'mark.blythe@northumbria.ac.uk', 'yatingdai@xlab.iii.u-tokyo.ac.jp'];
+export const WORKSHOP_MAIL = [];
 
-export const VALID_CODES = ['WKVYL1260','WHLYC3715','W9CRA4228','W8OF14255','WEERV5495','WOPZT5994','WAFVT6665','WH2UB6952','WFJMV8727','W3','W2XWG9059','WCGJ69650','W6JXI9731','WUMJU9838','WAR9O3859','WJGUU1562','W836W1877', 'DCO'];
+export const VALID_CODES = [];
 
 export const EB_MAIL=['frochaix@gsu.edu'];
 
