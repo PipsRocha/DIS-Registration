@@ -23,6 +23,6 @@ export const WORKSHOP_MAIL = [];
 
 export const VALID_CODES = [];
 
-export const EB_MAIL=['frochaix@gsu.edu'];
+export const EB_MAIL=['caseysimone@berkeley.edu'];
 
 export const EBW_MAIL=[];
