@@ -21,7 +21,7 @@ export const DISCOUNT_MAIL = [];
 
 export const WORKSHOP_MAIL = [];
 
-export const VALID_CODES = [];
+export const VALID_CODES = ['W8OF14255'];
 
 export const EB_MAIL=['caseysimone@berkeley.edu'];
 
